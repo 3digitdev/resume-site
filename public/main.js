@@ -5105,16 +5105,30 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
-var $author$project$Main$About = {$: 'About'};
-var $author$project$Main$pageTitle = function (subpage) {
-	return 'Max Bussiere | ' + subpage;
+var $author$project$Main$Work = {$: 'Work'};
+var $author$project$Main$pageString = function (page) {
+	switch (page.$) {
+		case 'About':
+			return 'About';
+		case 'Work':
+			return 'Work History';
+		case 'Education':
+			return 'Education';
+		case 'Skills':
+			return 'Skills';
+		default:
+			return 'Portfolio';
+	}
+};
+var $author$project$Main$pageTitle = function (page) {
+	return 'Max Bussiere | ' + $author$project$Main$pageString(page);
 };
 var $author$project$Main$initModel = F2(
 	function (url, key) {
 		return {
 			key: key,
-			page: $author$project$Main$About,
-			title: $author$project$Main$pageTitle(''),
+			page: $author$project$Main$Work,
+			title: $author$project$Main$pageTitle($author$project$Main$Work),
 			url: url
 		};
 	});
@@ -5177,6 +5191,49 @@ var $elm$url$Url$toString = function (url) {
 					_Utils_ap(http, url.host)),
 				url.path)));
 };
+var $author$project$Main$About = {$: 'About'};
+var $author$project$Main$Education = {$: 'Education'};
+var $author$project$Main$Portfolio = {$: 'Portfolio'};
+var $author$project$Main$Skills = {$: 'Skills'};
+var $elm_community$list_extra$List$Extra$last = function (items) {
+	last:
+	while (true) {
+		if (!items.b) {
+			return $elm$core$Maybe$Nothing;
+		} else {
+			if (!items.b.b) {
+				var x = items.a;
+				return $elm$core$Maybe$Just(x);
+			} else {
+				var rest = items.b;
+				var $temp$items = rest;
+				items = $temp$items;
+				continue last;
+			}
+		}
+	}
+};
+var $author$project$Main$urlToPage = function (url) {
+	var _v0 = $elm_community$list_extra$List$Extra$last(
+		A2($elm$core$String$split, '/', url));
+	if (_v0.$ === 'Nothing') {
+		return $author$project$Main$About;
+	} else {
+		var urlStr = _v0.a;
+		switch (urlStr) {
+			case 'work':
+				return $author$project$Main$Work;
+			case 'education':
+				return $author$project$Main$Education;
+			case 'skills':
+				return $author$project$Main$Skills;
+			case 'portfolio':
+				return $author$project$Main$Portfolio;
+			default:
+				return $author$project$Main$About;
+		}
+	}
+};
 var $author$project$Main$update = F2(
 	function (msg, model) {
 		switch (msg.$) {
@@ -5198,10 +5255,15 @@ var $author$project$Main$update = F2(
 				}
 			case 'UrlChanged':
 				var url = msg.a;
+				var page = $author$project$Main$urlToPage(url.path);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
-						{url: url}),
+						{
+							page: page,
+							title: $author$project$Main$pageTitle(page),
+							url: url
+						}),
 					$elm$core$Platform$Cmd$none);
 			default:
 				var page = msg.a;
@@ -5223,24 +5285,334 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $author$project$Main$pageString = function (page) {
-	switch (page.$) {
-		case 'About':
-			return 'About';
-		case 'Contact':
-			return 'Contact';
-		case 'Work':
-			return 'Work History';
-		case 'Education':
-			return 'Education';
-		case 'Skills':
-			return 'Skills';
-		default:
-			return 'Portfolio';
-	}
+var $author$project$Main$Job = F5(
+	function (employer, startDate, endDate, title, info) {
+		return {employer: employer, endDate: endDate, info: info, startDate: startDate, title: title};
+	});
+var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
+var $elm$core$Basics$clamp = F3(
+	function (low, high, number) {
+		return (_Utils_cmp(number, low) < 0) ? low : ((_Utils_cmp(number, high) > 0) ? high : number);
+	});
+var $elm$core$String$fromFloat = _String_fromNumber;
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$toAlphaString = function (value) {
+	return A2(
+		$elm$core$String$left,
+		5,
+		$elm$core$String$fromFloat(
+			A3($elm$core$Basics$clamp, 0, 1, value)));
 };
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString = function (value) {
+	return A2(
+		$elm$core$String$left,
+		5,
+		$elm$core$String$fromFloat(
+			A3($elm$core$Basics$clamp, 0, 255, 255 * value)));
+};
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$fill = function (_v0) {
+	var red = _v0.red;
+	var green = _v0.green;
+	var blue = _v0.blue;
+	var alpha = _v0.alpha;
+	var _v1 = ((0 <= alpha) && (alpha < 1)) ? _Utils_Tuple2(
+		'rgba',
+		_List_fromArray(
+			[
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString(red),
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString(green),
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString(blue),
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toAlphaString(alpha)
+			])) : _Utils_Tuple2(
+		'rgb',
+		_List_fromArray(
+			[
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString(red),
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString(green),
+				$j_panasiuk$elm_ionicons$Ionicon$Internal$toColorString(blue)
+			]));
+	var colorSpace = _v1.a;
+	var values = _v1.b;
+	return colorSpace + ('(' + (A2($elm$core$String$join, ',', values) + ')'));
+};
+var $elm$svg$Svg$Attributes$fill = _VirtualDom_attribute('fill');
+var $elm$svg$Svg$trustedNode = _VirtualDom_nodeNS('http://www.w3.org/2000/svg');
+var $elm$svg$Svg$path = $elm$svg$Svg$trustedNode('path');
+var $elm$svg$Svg$Attributes$enableBackground = _VirtualDom_attribute('enable-background');
+var $elm$svg$Svg$Attributes$height = _VirtualDom_attribute('height');
+var $elm$svg$Svg$svg = $elm$svg$Svg$trustedNode('svg');
+var $elm$svg$Svg$Attributes$version = _VirtualDom_attribute('version');
+var $elm$svg$Svg$Attributes$viewBox = _VirtualDom_attribute('viewBox');
+var $elm$svg$Svg$Attributes$width = _VirtualDom_attribute('width');
+var $elm$svg$Svg$Attributes$x = _VirtualDom_attribute('x');
+var $elm$svg$Svg$Attributes$y = _VirtualDom_attribute('y');
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$svg = function (size) {
+	return $elm$svg$Svg$svg(
+		_List_fromArray(
+			[
+				$elm$svg$Svg$Attributes$version('1.1'),
+				$elm$svg$Svg$Attributes$x('0px'),
+				$elm$svg$Svg$Attributes$y('0px'),
+				$elm$svg$Svg$Attributes$width(
+				$elm$core$String$fromInt(size)),
+				$elm$svg$Svg$Attributes$height(
+				$elm$core$String$fromInt(size)),
+				$elm$svg$Svg$Attributes$viewBox('0 0 512 512'),
+				$elm$svg$Svg$Attributes$enableBackground('new 0 0 512 512')
+			]));
+};
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$p = F3(
+	function (d, size, color) {
+		return A2(
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$svg,
+			size,
+			_List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$path,
+					_List_fromArray(
+						[
+							$elm$svg$Svg$Attributes$d(d),
+							$elm$svg$Svg$Attributes$fill(
+							$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
+						]),
+					_List_Nil)
+				]));
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$contact = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M256,48C141.1,48,48,141.1,48,256c0,114.9,93.1,208,208,208c114.9,0,208-93.1,208-208C464,141.1,370.9,48,256,48zM256,446.7c-58.6,0-111.1-26.6-146.1-68.3c17.8-7.7,62.2-23.7,90.3-31.9c2.2-0.7,2.6-0.8,2.6-10.7c0-10.6-1.2-18.1-3.8-23.6c-3.5-7.5-7.7-20.2-9.2-31.6c-4.2-4.9-9.9-14.5-13.6-32.9c-3.2-16.2-1.7-22.1,0.4-27.6c0.2-0.6,0.5-1.2,0.6-1.8c0.8-3.7-0.3-23.5-3.1-38.8c-1.9-10.5,0.5-32.8,15-51.3c9.1-11.7,26.6-26,58-28l17.5,0c31.9,2,49.4,16.3,58.5,28c14.5,18.5,16.9,40.8,14.9,51.3c-2.8,15.3-3.9,35-3.1,38.8c0.1,0.6,0.4,1.2,0.6,1.7c2.1,5.5,3.7,11.4,0.4,27.6c-3.7,18.4-9.4,28-13.6,32.9c-1.5,11.4-5.7,24-9.2,31.6c-3.3,6.9-6.6,15.1-6.6,23.3c0,9.9,0.4,10,2.7,10.7c26.7,7.9,72.7,23.8,93,32.1C367.2,420,314.7,446.7,256,446.7z');
+var $j_panasiuk$elm_ionicons$Ionicon$Social$facebook = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M288,192v-38.1c0-17.2,3.8-25.9,30.5-25.9H352V64h-55.9c-68.5,0-91.1,31.4-91.1,85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z');
+var $j_panasiuk$elm_ionicons$Ionicon$Social$github = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M256,32C132.3,32,32,134.9,32,261.7c0,101.5,64.2,187.5,153.2,217.9c1.4,0.3,2.6,0.4,3.8,0.4c8.3,0,11.5-6.1,11.5-11.4c0-5.5-0.2-19.9-0.3-39.1c-8.4,1.9-15.9,2.7-22.6,2.7c-43.1,0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.6-24.9-33.6c-19.5-13.7-0.1-14.1,1.4-14.1c0.1,0,0.1,0,0.1,0c22.5,2,34.3,23.8,34.3,23.8c11.2,19.6,26.2,25.1,39.6,25.1c10.5,0,20-3.4,25.6-6c2-14.8,7.8-24.9,14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,1.6-0.5,5-0.5c8.1,0,26.4,3.1,56.6,24.1c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7c30.2-21,48.5-24.1,56.6-24.1c3.4,0,5,0.5,5,0.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,5.4,3.1,11.5,11.4,11.5c1.2,0,2.6-0.1,4-0.4C415.9,449.2,480,363.1,480,261.7C480,134.9,379.7,32,256,32z');
+var $elm$html$Html$h2 = _VirtualDom_node('h2');
+var $elm$html$Html$h3 = _VirtualDom_node('h3');
+var $elm$html$Html$h5 = _VirtualDom_node('h5');
+var $elm$html$Html$img = _VirtualDom_node('img');
+var $j_panasiuk$elm_ionicons$Ionicon$Social$linkedin = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M417.2,64H96.8C79.3,64,64,76.6,64,93.9v321.1c0,17.4,15.3,32.9,32.8,32.9h320.3c17.6,0,30.8-15.6,30.8-32.9V93.9C448,76.6,434.7,64,417.2,64zM183,384h-55V213h55V384zM157.4,187H157c-17.6,0-29-13.1-29-29.5c0-16.7,11.7-29.5,29.7-29.5c18,0,29,12.7,29.4,29.5C187.1,173.9,175.7,187,157.4,187zM384,384h-55v-93.5c0-22.4-8-37.7-27.9-37.7c-15.2,0-24.2,10.3-28.2,20.3c-1.5,3.6-1.9,8.5-1.9,13.5V384h-55V213h55v23.8c8-11.4,20.5-27.8,49.6-27.8c36.1,0,63.4,23.8,63.4,75.1V384z');
+var $elm$html$Html$p = _VirtualDom_node('p');
+var $author$project$Main$formatJobDate = function (job) {
+	return ((job.endDate === '') || (job.endDate === 'Present')) ? (job.startDate + (' ⟹ ' + 'Present')) : (job.startDate + (' ⟹ ' + job.endDate));
+};
+var $elm$html$Html$h6 = _VirtualDom_node('h6');
+var $elm$html$Html$li = _VirtualDom_node('li');
+var $elm$html$Html$span = _VirtualDom_node('span');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$ul = _VirtualDom_node('ul');
+var $author$project$Main$renderJob = function (job) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('job row')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('four columns info-wrapper')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$span,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h6,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline job-em')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Employer: ')
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('job-info')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(job.employer)
+									]))
+							])),
+						A2(
+						$elm$html$Html$span,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h6,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline job-em')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Dates: ')
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('job-info')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(
+										$author$project$Main$formatJobDate(job))
+									]))
+							])),
+						A2(
+						$elm$html$Html$span,
+						_List_Nil,
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h6,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline job-em')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Title: ')
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('job-info')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text(job.title)
+									]))
+							]))
+					])),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('eight columns')
+					]),
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$ul,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('job-resp')
+							]),
+						A2(
+							$elm$core$List$map,
+							function (item) {
+								return A2(
+									$elm$html$Html$li,
+									_List_Nil,
+									_List_fromArray(
+										[
+											$elm$html$Html$text(item)
+										]));
+							},
+							job.info))
+					]))
+			]));
+};
+var $elm$html$Html$Attributes$action = function (uri) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'action',
+		_VirtualDom_noJavaScriptUri(uri));
+};
+var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('htmlFor');
+var $elm$html$Html$form = _VirtualDom_node('form');
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
+var $elm$html$Html$input = _VirtualDom_node('input');
+var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$core$String$toLower = _String_toLower;
+var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
+var $author$project$Main$RGBA = F4(
+	function (red, green, blue, alpha) {
+		return {alpha: alpha, blue: blue, green: green, red: red};
+	});
+var $author$project$Main$white = A4($author$project$Main$RGBA, 1, 1, 1, 1);
+var $author$project$Main$socialLink = F3(
+	function (name, url, icon) {
+		return A2(
+			$elm$html$Html$form,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$class('inline'),
+					$elm$html$Html$Attributes$action(url)
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$label,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$for(
+							$elm$core$String$toLower(name)),
+							$elm$html$Html$Attributes$class('social inline')
+						]),
+					_List_fromArray(
+						[
+							A2(icon, 32, $author$project$Main$white),
+							$elm$html$Html$text(name)
+						])),
+					A2(
+					$elm$html$Html$input,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$id(
+							$elm$core$String$toLower(name)),
+							$elm$html$Html$Attributes$class('hidden inline'),
+							$elm$html$Html$Attributes$type_('submit')
+						]),
+					_List_Nil)
+				]));
+	});
+var $elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
+};
+var $j_panasiuk$elm_ionicons$Ionicon$Social$twitter = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M492,109.5c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5C399.8,75.8,374.6,64,346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1c-80.5-4-151.9-42.6-199.6-101.3c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.2,63.3,43.2,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5c-7.8,0-15.5-0.5-23.1-1.4C62.8,432,113.7,448,168.3,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5C462.6,146,479,129,492,109.5z');
+var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$ps = F3(
+	function (ds, size, color) {
+		return A2(
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$svg,
+			size,
+			_List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$g,
+					_List_Nil,
+					A2(
+						$elm$core$List$map,
+						function (d) {
+							return A2(
+								$elm$svg$Svg$path,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$d(d),
+										$elm$svg$Svg$Attributes$fill(
+										$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
+									]),
+								_List_Nil);
+						},
+						ds))
+				]));
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$world = $j_panasiuk$elm_ionicons$Ionicon$Internal$ps(
+	_List_fromArray(
+		['M256,48c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.2,0-0.2,0C140.8,48.3,48,141.3,48,256c0,114.7,92.8,207.7,207.5,208 c0.1,0,0.2,0,0.2,0c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.2,0c114.9,0,208-93.1,208-208C464,141.1,370.9,48,256,48z M256,447.4 c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.2,0-0.2,0C150.1,447.1,64.6,361.5,64.6,256c0-105.5,85.4-191.1,190.9-191.3 c0.1,0,0.1,0,0.2,0c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.2,0c105.7,0,191.4,85.7,191.4,191.4C447.4,361.7,361.7,447.4,256,447.4z', 'M322.3,171.8c-18.7,4.5-38,7.2-57.9,7.8v68.1H332C331.4,219.6,327.9,194.1,322.3,171.8z', 'M264.3,82.5v81.9c18.5-0.6,36.5-3,53.8-7.2C305,115.8,284.6,88.6,264.3,82.5z', 'M193.4,157.1c17.5,4.2,35.6,6.7,54.2,7.3V82.3C227.3,88.2,206.6,115.4,193.4,157.1z', 'M380.6,133.4c-22.6-23-51.5-39.8-83.9-47.5c14.8,15.3,27.2,38.7,36.1,67.3C349.5,148.1,365.5,141.5,380.6,133.4z', 'M347.3,247.7h83.3c-1.8-38.8-16.3-74.4-39.5-102.6c-17.1,9.4-35.2,17.1-54.1,22.8C343.1,191.9,346.7,219,347.3,247.7z', 'M179.5,247.7h68.2v-68.1c-20.1-0.6-39.6-3.3-58.4-7.9C183.6,194,180.1,219.6,179.5,247.7z', 'M332,264.3h-67.7v68c19.9,0.6,39.3,3.2,58,7.8C327.9,317.9,331.4,292.3,332,264.3z', 'M189.3,340.2c18.8-4.6,38.3-7.3,58.4-7.9v-68h-68.2C180.1,292.4,183.6,318,189.3,340.2z', 'M247.7,429.6v-82.1c-18.6,0.6-36.8,3.1-54.3,7.3C206.6,396.5,227.3,423.8,247.7,429.6z', 'M296.7,426.1c32.4-7.8,61.3-24.5,84-47.6c-15.1-8.1-31.1-14.7-47.8-19.8C324,387.4,311.5,410.7,296.7,426.1z', 'M214.7,86.1c-32.1,7.8-60.8,24.5-83.3,47.4c15,8,30.8,14.6,47.3,19.6C187.6,124.6,200,101.4,214.7,86.1z', 'M337,344.1c19,5.7,37.1,13.4,54.2,22.8c23.2-28.2,37.7-63.8,39.5-102.6h-83.3C346.7,293,343.1,320,337,344.1z', 'M264.3,347.5v82c20.3-6.1,40.7-33.3,53.8-74.8C300.8,350.5,282.8,348.1,264.3,347.5z', 'M174.6,167.8c-18.8-5.7-36.8-13.3-53.7-22.7c-23.2,28.2-37.7,63.8-39.5,102.6h82.9C164.8,218.9,168.5,191.8,174.6,167.8z', 'M164.2,264.3H81.3c1.8,38.8,16.3,74.4,39.5,102.6c16.9-9.3,34.9-17,53.7-22.7C168.5,320.2,164.8,293.1,164.2,264.3z', 'M131.3,378.5c22.5,22.9,51.2,39.6,83.4,47.4c-14.7-15.3-27.1-38.6-36-67.1C162.2,363.9,146.3,370.5,131.3,378.5z']));
 var $author$project$Main$renderBody = function (model) {
 	var _v0 = model.page;
 	switch (_v0.$) {
@@ -5250,25 +5622,188 @@ var $author$project$Main$renderBody = function (model) {
 				_List_Nil,
 				_List_fromArray(
 					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('avatar')
+							]),
+						_List_fromArray(
+							[
+								A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, 256, $author$project$Main$white)
+							])),
+						A2(
+						$elm$html$Html$h2,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('about full-name')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Max Andrew Bach Bussiere')
+							])),
+						A2(
+						$elm$html$Html$h5,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('about')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Milwaukee 一 WI 一 U.S.A.')
+							])),
+						A2(
+						$elm$html$Html$img,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('about email'),
+								$elm$html$Html$Attributes$src('email.png')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('email image')
+							])),
+						A2(
+						$elm$html$Html$h3,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('about')
+							]),
+						_List_fromArray(
+							[
+								$elm$html$Html$text('Social:')
+							])),
+						A2(
+						$elm$html$Html$p,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('about')
+							]),
+						_List_fromArray(
+							[
+								A3($author$project$Main$socialLink, 'GitHub', 'https://github.com/3digitdev/', $j_panasiuk$elm_ionicons$Ionicon$Social$github),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline spacer')
+									]),
+								_List_Nil),
+								A3($author$project$Main$socialLink, 'Twitter', 'https://www.twitter.com/', $j_panasiuk$elm_ionicons$Ionicon$Social$twitter),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline spacer')
+									]),
+								_List_Nil),
+								A3($author$project$Main$socialLink, 'Facebook', 'https://www.facebook.com/', $j_panasiuk$elm_ionicons$Ionicon$Social$facebook),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline spacer')
+									]),
+								_List_Nil),
+								A3($author$project$Main$socialLink, 'LinkedIn', 'https://www.linkedin.com/in/maxbuss', $j_panasiuk$elm_ionicons$Ionicon$Social$linkedin),
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline spacer')
+									]),
+								_List_Nil),
+								A3($author$project$Main$socialLink, 'Website', 'https://me.3digit.dev/', $j_panasiuk$elm_ionicons$Ionicon$Ios$world)
+							])),
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('bio')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h3,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Bio: ')
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('inline')
+									]),
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+									])),
+								A2($elm$html$Html$p, _List_Nil, _List_Nil),
+								A2(
+								$elm$html$Html$p,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+									])),
+								A2(
+								$elm$html$Html$p,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+									]))
+							]))
+					]));
+		case 'Work':
+			return A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$author$project$Main$renderJob(
+						A5(
+							$author$project$Main$Job,
+							'Northwestern Mutual',
+							'July 2017',
+							'Present',
+							'Senior Test Engineer',
+							_List_fromArray(
+								['Lead tester on a brand new rewrite of front-end for a large enterprise application', 'Developed automation strategy to make end-to-end tests run 3x faster with no loss of reliability', 'Lead training classes for helping test engineers learn API testing', 'Scripted automation of hundreds of tests covering a large application', 'Developed process, documentation, and organization of actual codebase and test codebase', 'Helped to greatly improve reliability, cleanliness, and organization of entire testing repo']))),
+						$author$project$Main$renderJob(
+						A5($author$project$Main$Job, 'Schweitzer Engineering Labs, Inc.', 'February 2014', 'June 2017', 'Software Engineer', _List_Nil))
+					]));
+		case 'Education':
+			return A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
 						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
 					]));
-		case 'Contact':
-			return A2($elm$html$Html$div, _List_Nil, _List_Nil);
-		case 'Work':
-			return A2($elm$html$Html$div, _List_Nil, _List_Nil);
-		case 'Education':
-			return A2($elm$html$Html$div, _List_Nil, _List_Nil);
 		case 'Skills':
-			return A2($elm$html$Html$div, _List_Nil, _List_Nil);
+			return A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+					]));
 		default:
-			return A2($elm$html$Html$div, _List_Nil, _List_Nil);
+			return A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+					]));
 	}
 };
-var $author$project$Main$Contact = {$: 'Contact'};
-var $author$project$Main$Education = {$: 'Education'};
-var $author$project$Main$Portfolio = {$: 'Portfolio'};
-var $author$project$Main$Skills = {$: 'Skills'};
-var $author$project$Main$Work = {$: 'Work'};
 var $author$project$Main$NavClicked = function (a) {
 	return {$: 'NavClicked', a: a};
 };
@@ -5280,10 +5815,6 @@ var $elm$html$Html$Attributes$href = function (url) {
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
 };
-var $author$project$Main$navClass = F2(
-	function (model, page) {
-		return _Utils_eq(model.page, page) ? 'nav-current' : '';
-	});
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
 };
@@ -5301,12 +5832,104 @@ var $elm$html$Html$Events$onClick = function (msg) {
 		'click',
 		$elm$json$Json$Decode$succeed(msg));
 };
+var $j_panasiuk$elm_ionicons$Ionicon$briefcase = $j_panasiuk$elm_ionicons$Ionicon$Internal$ps(
+	_List_fromArray(
+		['M272,272h-32v-8H32v176c0,4.4,3.3,8,7.8,8h432.5c4.4,0,7.7-3.6,7.7-8V264H272V272z', 'M472.2,144H352v-30.7C351,85.1,330.3,64,300.8,64h-89.6c-29.4,0-50.2,21.1-51.2,49.3V144H39.8c-4.4,0-7.8,3.6-7.8,8v96h208 v-8h32v8h208v-96C480,147.6,476.7,144,472.2,144z M320,116.2c0,0.3,0,0.6,0,1V144H192v-26.8c0-0.4,0-0.7,0-1c0-0.3,0-0.6,0-1 c0-9.7,8.6-19.2,18.8-19.2h90.4c10.1,0,18.8,9.4,18.8,19.2C320,115.6,320,115.9,320,116.2z']));
+var $j_panasiuk$elm_ionicons$Ionicon$coffee = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M383.1,257.4c0.6-5.4,0.9-10,0.9-13.8c0-19.6-3.3-19.7-16-19.7h-75.5c7.3-12,11.5-24.4,11.5-37c0-37.9-57.3-56.4-57.3-88c0-11.7,5.1-21.3,9.3-34.9c-26.5,7-47.4,33.5-47.4,61.6c0,48.3,56.3,48.7,56.3,84.8c0,4.5-1.4,8.5-2.1,13.5h-55.9c0.8-3,1.3-6.2,1.3-9.3c0-22.8-39.1-33.9-39.1-52.8c0-7,1-12.8,3.2-21c-12.9,5.1-28.3,20-28.3,36.8c0,26.7,31.9,29.3,36.8,46.3H80c-12.7,0-16,0.1-16,19.7c0,19.6,7.7,61.3,28.3,111c20.6,49.7,44.4,71.6,61.2,86.2l0.1-0.2c5.1,4.6,11.8,7.3,19.2,7.3h102.4c7.4,0,14.1-2.7,19.2-7.3l0.1,0.2c9-7.8,20-17.8,31.4-32.9c4.7,2,9.8,3.7,15.4,5c8.4,2,16.8,3,24.8,3c24,0,45.6-9.2,60.8-25.8c13.4-14.6,21.1-34.4,21.1-54.2C448,297,420,264.5,383.1,257.4zM366.1,384.2c-8.6,0-15.6-1.2-22.1-4.2c4-8,7.9-15.9,11.7-25.1c10.1-24.4,17.1-47,21.6-65.8c22,4.3,38.7,23.8,38.7,47.1C416,358.9,398.8,384.2,366.1,384.2z');
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$g = F3(
+	function (elements, size, color) {
+		return A2(
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$svg,
+			size,
+			_List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$g,
+					_List_Nil,
+					A2(
+						$elm$core$List$map,
+						function (el) {
+							return el(color);
+						},
+						elements))
+				]));
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$p1 = F2(
+	function (d, color) {
+		return A2(
+			$elm$svg$Svg$path,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$d(d),
+					$elm$svg$Svg$Attributes$fill(
+					$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
+				]),
+			_List_Nil);
+	});
+var $elm$svg$Svg$rect = $elm$svg$Svg$trustedNode('rect');
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$r4 = F5(
+	function (x, y, width, height, color) {
+		return A2(
+			$elm$svg$Svg$rect,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$x(x),
+					$elm$svg$Svg$Attributes$y(y),
+					$elm$svg$Svg$Attributes$width(width),
+					$elm$svg$Svg$Attributes$height(height),
+					$elm$svg$Svg$Attributes$fill(
+					$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
+				]),
+			_List_Nil);
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$lightbulb = $j_panasiuk$elm_ionicons$Ionicon$Internal$g(
+	_List_fromArray(
+		[
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$p1('M400,172.9C400,95.1,333.9,32,256,32c-77.9,0-144,63.1-144,141c0,31,13.2,59,30.2,83h-0.3c10.9,15,21.4,27.7,31.5,45c22,37.8,18.6,74.3,18.7,81.6v1.4h32V256l-32-64h16.6l31.4,64v128h32V256l31.4-64H320l-32,64v128h32v-1.4c0-8.9-3.6-43.8,18.4-81.6c10.1-17.3,20.6-30,31.5-45h-0.1C386.8,232,400,204,400,172.9z'),
+			A4($j_panasiuk$elm_ionicons$Ionicon$Internal$r4, '224', '464', '64', '16'),
+			A4($j_panasiuk$elm_ionicons$Ionicon$Internal$r4, '208', '432', '96', '16'),
+			A4($j_panasiuk$elm_ionicons$Ionicon$Internal$r4, '208', '400', '96', '16')
+		]));
+var $elm$svg$Svg$Attributes$points = _VirtualDom_attribute('points');
+var $elm$svg$Svg$polygon = $elm$svg$Svg$trustedNode('polygon');
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$pg1 = F2(
+	function (points, color) {
+		return A2(
+			$elm$svg$Svg$polygon,
+			_List_fromArray(
+				[
+					$elm$svg$Svg$Attributes$points(points),
+					$elm$svg$Svg$Attributes$fill(
+					$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
+				]),
+			_List_Nil);
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$university = $j_panasiuk$elm_ionicons$Ionicon$Internal$g(
+	_List_fromArray(
+		[
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$pg1('256,64 32,176.295 64,197.367 64,400 96,416 96,217.849 255.852,320 387.996,234.549 480,174.727'),
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$p1('M390.13,256L256,343.768L120.531,256L112,337.529C128,349.984,224,416,256.002,448C288,416,384,350.031,400,337.561 L390.13,256z')
+		]));
+var $author$project$Main$pageIcon = F2(
+	function (page, color) {
+		var size = 30;
+		switch (page.$) {
+			case 'About':
+				return A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, size, color);
+			case 'Work':
+				return A2($j_panasiuk$elm_ionicons$Ionicon$coffee, size, color);
+			case 'Education':
+				return A2($j_panasiuk$elm_ionicons$Ionicon$university, size, color);
+			case 'Skills':
+				return A2($j_panasiuk$elm_ionicons$Ionicon$Ios$lightbulb, size, color);
+			default:
+				return A2($j_panasiuk$elm_ionicons$Ionicon$briefcase, size, color);
+		}
+	});
 var $author$project$Main$pageLink = function (page) {
 	switch (page.$) {
 		case 'About':
 			return 'about';
-		case 'Contact':
-			return 'contact';
 		case 'Work':
 			return 'work';
 		case 'Education':
@@ -5317,8 +5940,9 @@ var $author$project$Main$pageLink = function (page) {
 			return 'portfolio';
 	}
 };
-var $author$project$Main$navLink = F3(
-	function (model, page, extra) {
+var $author$project$Main$navLink = F2(
+	function (model, page) {
+		var navClass = _Utils_eq(model.page, page) ? 'nav current' : 'nav';
 		return A2(
 			$elm$html$Html$a,
 			_List_fromArray(
@@ -5335,35 +5959,30 @@ var $author$project$Main$navLink = F3(
 					$elm$html$Html$h4,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$class(
-							A2($author$project$Main$navClass, model, page) + (' ' + extra))
+							$elm$html$Html$Attributes$class(navClass)
 						]),
 					_List_fromArray(
 						[
+							A2($author$project$Main$pageIcon, page, $author$project$Main$white),
 							$elm$html$Html$text(
 							$author$project$Main$pageString(page))
 						]))
 				]));
-	});
-var $author$project$Main$navLinkNotLast = F2(
-	function (model, page) {
-		return A3($author$project$Main$navLink, model, page, '');
 	});
 var $author$project$Main$renderNavBar = function (model) {
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('two columns nav-border center-text')
+				$elm$html$Html$Attributes$class('three columns nav-bar')
 			]),
 		_List_fromArray(
 			[
-				A2($author$project$Main$navLinkNotLast, model, $author$project$Main$About),
-				A2($author$project$Main$navLinkNotLast, model, $author$project$Main$Contact),
-				A2($author$project$Main$navLinkNotLast, model, $author$project$Main$Work),
-				A2($author$project$Main$navLinkNotLast, model, $author$project$Main$Education),
-				A2($author$project$Main$navLinkNotLast, model, $author$project$Main$Skills),
-				A3($author$project$Main$navLink, model, $author$project$Main$Portfolio, 'nav-last')
+				A2($author$project$Main$navLink, model, $author$project$Main$About),
+				A2($author$project$Main$navLink, model, $author$project$Main$Work),
+				A2($author$project$Main$navLink, model, $author$project$Main$Education),
+				A2($author$project$Main$navLink, model, $author$project$Main$Skills),
+				A2($author$project$Main$navLink, model, $author$project$Main$Portfolio)
 			]));
 };
 var $author$project$Main$view = function (model) {
@@ -5390,7 +6009,7 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('ten columns center-text')
+										$elm$html$Html$Attributes$class('nine columns center-text')
 									]),
 								_List_fromArray(
 									[
@@ -5399,8 +6018,17 @@ var $author$project$Main$view = function (model) {
 										_List_Nil,
 										_List_fromArray(
 											[
-												$elm$html$Html$text(
-												$author$project$Main$pageString(model.page))
+												A2(
+												$elm$html$Html$span,
+												_List_fromArray(
+													[
+														$elm$html$Html$Attributes$class('page-header')
+													]),
+												_List_fromArray(
+													[
+														$elm$html$Html$text(
+														$author$project$Main$pageString(model.page))
+													]))
 											]))
 									]))
 							])),
@@ -5416,7 +6044,7 @@ var $author$project$Main$view = function (model) {
 								$elm$html$Html$div,
 								_List_fromArray(
 									[
-										$elm$html$Html$Attributes$class('ten columns')
+										$elm$html$Html$Attributes$class('nine columns')
 									]),
 								_List_fromArray(
 									[
