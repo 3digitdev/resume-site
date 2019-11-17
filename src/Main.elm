@@ -10,7 +10,6 @@ import Html.Events exposing (onClick)
 import Ionicon.Ios as IonIos
 import Ionicon.Social as IonSoc
 import Jobs exposing (..)
-import List.Extra exposing (greedyGroupsOf)
 import Skills exposing (..)
 import Url
 
@@ -70,7 +69,6 @@ type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
     | NavClicked Page
-    | AnchorScrolledTo String
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -93,9 +91,6 @@ update msg model =
 
         NavClicked page ->
             ( { model | page = page }, Cmd.none )
-
-        AnchorScrolledTo anchor ->
-            ( { model | page = anchorToPage anchor }, Cmd.none )
 
 
 
