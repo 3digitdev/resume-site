@@ -16,8 +16,16 @@ h1 {
     text-align: center;
 }
 
+h6 {
+    font-size: 1.7rem;
+}
+
+h5 {
+    font-size: 2.2rem;
+}
+
 .debug-border {
-    border: 1px dotted green;
+    border: 1px solid #C7C7C7;
 }
 
 span.page-header {
@@ -27,6 +35,15 @@ span.page-header {
 
 .inline {
     display: inline;
+}
+
+.center-text {
+    text-align: center;
+}
+
+.full-shadow {
+    box-shadow: 0px 0px 30px #212121;
+    /* box-shadow: 5px 5px 10px #212121, 5px -5px 10px #212121, -5px -5px 10px #212121, -5px 5px 10px #212121; */
 }
 
 /* NAV BAR STUFF*/
@@ -120,4 +137,38 @@ div.bio > p:nth-of-type(1) {
 
 .job-resp {
     margin: 1rem;
+}
+
+/* EDUCATION PAGE */
+.education {
+    margin-bottom: 2rem;
+    border: 1px solid #C7C7C7;
+}
+
+.ed-em {
+    margin: 1rem 0 0 1rem;
+    font-weight: bold;
+}
+
+.ed-info {
+    margin-left: 3rem;
+    margin-bottom: 0;
+}
+
+.ed-resp {
+    margin: 1rem;
+}
+
+/* SKILLS PAGE */
+div.skill-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+div.skill-card {
+    margin: 0 2% 2% 0;
+    border: 1px solid #C7C7C7;
+    padding: 2rem;
+    flex: 1 0 25%;
 }

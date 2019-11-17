@@ -5105,8 +5105,8 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
-var $author$project$Main$Work = {$: 'Work'};
-var $author$project$Main$pageString = function (page) {
+var $author$project$Helpers$Portfolio = {$: 'Portfolio'};
+var $author$project$Helpers$pageString = function (page) {
 	switch (page.$) {
 		case 'About':
 			return 'About';
@@ -5121,14 +5121,14 @@ var $author$project$Main$pageString = function (page) {
 	}
 };
 var $author$project$Main$pageTitle = function (page) {
-	return 'Max Bussiere | ' + $author$project$Main$pageString(page);
+	return 'Max Bussiere | ' + $author$project$Helpers$pageString(page);
 };
 var $author$project$Main$initModel = F2(
 	function (url, key) {
 		return {
 			key: key,
-			page: $author$project$Main$Work,
-			title: $author$project$Main$pageTitle($author$project$Main$Work),
+			page: $author$project$Helpers$Portfolio,
+			title: $author$project$Main$pageTitle($author$project$Helpers$Portfolio),
 			url: url
 		};
 	});
@@ -5144,6 +5144,24 @@ var $elm$core$Platform$Sub$batch = _Platform_batch;
 var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
+};
+var $author$project$Helpers$About = {$: 'About'};
+var $author$project$Helpers$Education = {$: 'Education'};
+var $author$project$Helpers$Skills = {$: 'Skills'};
+var $author$project$Helpers$Work = {$: 'Work'};
+var $author$project$Helpers$anchorToPage = function (anchor) {
+	switch (anchor) {
+		case 'Work':
+			return $author$project$Helpers$Work;
+		case 'Education':
+			return $author$project$Helpers$Education;
+		case 'Skills':
+			return $author$project$Helpers$Skills;
+		case 'Portfolio':
+			return $author$project$Helpers$Portfolio;
+		default:
+			return $author$project$Helpers$About;
+	}
 };
 var $elm$browser$Browser$Navigation$load = _Browser_load;
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
@@ -5191,10 +5209,6 @@ var $elm$url$Url$toString = function (url) {
 					_Utils_ap(http, url.host)),
 				url.path)));
 };
-var $author$project$Main$About = {$: 'About'};
-var $author$project$Main$Education = {$: 'Education'};
-var $author$project$Main$Portfolio = {$: 'Portfolio'};
-var $author$project$Main$Skills = {$: 'Skills'};
 var $elm_community$list_extra$List$Extra$last = function (items) {
 	last:
 	while (true) {
@@ -5213,24 +5227,24 @@ var $elm_community$list_extra$List$Extra$last = function (items) {
 		}
 	}
 };
-var $author$project$Main$urlToPage = function (url) {
+var $author$project$Helpers$urlToPage = function (url) {
 	var _v0 = $elm_community$list_extra$List$Extra$last(
 		A2($elm$core$String$split, '/', url));
 	if (_v0.$ === 'Nothing') {
-		return $author$project$Main$About;
+		return $author$project$Helpers$About;
 	} else {
 		var urlStr = _v0.a;
 		switch (urlStr) {
 			case 'work':
-				return $author$project$Main$Work;
+				return $author$project$Helpers$Work;
 			case 'education':
-				return $author$project$Main$Education;
+				return $author$project$Helpers$Education;
 			case 'skills':
-				return $author$project$Main$Skills;
+				return $author$project$Helpers$Skills;
 			case 'portfolio':
-				return $author$project$Main$Portfolio;
+				return $author$project$Helpers$Portfolio;
 			default:
-				return $author$project$Main$About;
+				return $author$project$Helpers$About;
 		}
 	}
 };
@@ -5255,7 +5269,7 @@ var $author$project$Main$update = F2(
 				}
 			case 'UrlChanged':
 				var url = msg.a;
-				var page = $author$project$Main$urlToPage(url.path);
+				var page = $author$project$Helpers$urlToPage(url.path);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
@@ -5265,12 +5279,21 @@ var $author$project$Main$update = F2(
 							url: url
 						}),
 					$elm$core$Platform$Cmd$none);
-			default:
+			case 'NavClicked':
 				var page = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{page: page}),
+					$elm$core$Platform$Cmd$none);
+			default:
+				var anchor = msg.a;
+				return _Utils_Tuple2(
+					_Utils_update(
+						model,
+						{
+							page: $author$project$Helpers$anchorToPage(anchor)
+						}),
 					$elm$core$Platform$Cmd$none);
 		}
 	});
@@ -5285,10 +5308,38 @@ var $elm$html$Html$Attributes$stringProperty = F2(
 var $elm$html$Html$Attributes$class = $elm$html$Html$Attributes$stringProperty('className');
 var $elm$html$Html$div = _VirtualDom_node('div');
 var $elm$html$Html$h1 = _VirtualDom_node('h1');
-var $author$project$Main$Job = F5(
+var $author$project$Education$BootCamp = F5(
+	function (school, website, startDate, endDate, info) {
+		return {endDate: endDate, info: info, school: school, startDate: startDate, website: website};
+	});
+var $author$project$Education$Camp = function (a) {
+	return {$: 'Camp', a: a};
+};
+var $author$project$Education$Formal = function (a) {
+	return {$: 'Formal', a: a};
+};
+var $author$project$Education$FormalEd = F5(
+	function (school, gradDate, degree, gpa, info) {
+		return {degree: degree, gpa: gpa, gradDate: gradDate, info: info, school: school};
+	});
+var $author$project$Jobs$Job = F5(
 	function (employer, startDate, endDate, title, info) {
 		return {employer: employer, endDate: endDate, info: info, startDate: startDate, title: title};
 	});
+var $author$project$Helpers$LinkItem = F2(
+	function (a, b) {
+		return {$: 'LinkItem', a: a, b: b};
+	});
+var $author$project$Education$SelfEducated = function (a) {
+	return {$: 'SelfEducated', a: a};
+};
+var $author$project$Skills$Skill = F3(
+	function (name, rating, blurb) {
+		return {blurb: blurb, name: name, rating: rating};
+	});
+var $author$project$Helpers$TextItem = function (a) {
+	return {$: 'TextItem', a: a};
+};
 var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
 var $elm$core$Basics$clamp = F3(
 	function (low, high, number) {
@@ -5384,24 +5435,355 @@ var $j_panasiuk$elm_ionicons$Ionicon$Social$github = $j_panasiuk$elm_ionicons$Io
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$h5 = _VirtualDom_node('h5');
+var $elm$html$Html$hr = _VirtualDom_node('hr');
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$img = _VirtualDom_node('img');
 var $j_panasiuk$elm_ionicons$Ionicon$Social$linkedin = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M417.2,64H96.8C79.3,64,64,76.6,64,93.9v321.1c0,17.4,15.3,32.9,32.8,32.9h320.3c17.6,0,30.8-15.6,30.8-32.9V93.9C448,76.6,434.7,64,417.2,64zM183,384h-55V213h55V384zM157.4,187H157c-17.6,0-29-13.1-29-29.5c0-16.7,11.7-29.5,29.7-29.5c18,0,29,12.7,29.4,29.5C187.1,173.9,175.7,187,157.4,187zM384,384h-55v-93.5c0-22.4-8-37.7-27.9-37.7c-15.2,0-24.2,10.3-28.2,20.3c-1.5,3.6-1.9,8.5-1.9,13.5V384h-55V213h55v23.8c8-11.4,20.5-27.8,49.6-27.8c36.1,0,63.4,23.8,63.4,75.1V384z');
 var $elm$html$Html$p = _VirtualDom_node('p');
-var $author$project$Main$formatJobDate = function (job) {
-	return ((job.endDate === '') || (job.endDate === 'Present')) ? (job.startDate + (' ⟹ ' + 'Present')) : (job.startDate + (' ⟹ ' + job.endDate));
-};
+var $elm$html$Html$a = _VirtualDom_node('a');
+var $author$project$Helpers$formatStartEndDate = F2(
+	function (start, end) {
+		return ((end === '') || (end === 'Present')) ? (start + (' ⟹ ' + 'Present')) : (start + (' ⟹ ' + end));
+	});
 var $elm$html$Html$h6 = _VirtualDom_node('h6');
+var $elm$html$Html$Attributes$href = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'href',
+		_VirtualDom_noJavaScriptUri(url));
+};
 var $elm$html$Html$li = _VirtualDom_node('li');
-var $elm$html$Html$span = _VirtualDom_node('span');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $author$project$Helpers$renderInfoList = function (infoList) {
+	return A2(
+		$elm$core$List$map,
+		function (item) {
+			if (item.$ === 'TextItem') {
+				var txt = item.a;
+				return A2(
+					$elm$html$Html$li,
+					_List_Nil,
+					_List_fromArray(
+						[
+							$elm$html$Html$text(txt)
+						]));
+			} else {
+				var url = item.a;
+				var txt = item.b;
+				return A2(
+					$elm$html$Html$li,
+					_List_Nil,
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$a,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$href(url)
+								]),
+							_List_fromArray(
+								[
+									$elm$html$Html$text(txt)
+								]))
+						]));
+			}
+		},
+		infoList);
+};
+var $elm$html$Html$span = _VirtualDom_node('span');
 var $elm$html$Html$ul = _VirtualDom_node('ul');
-var $author$project$Main$renderJob = function (job) {
+var $author$project$Education$educationInfo = function (edType) {
+	switch (edType.$) {
+		case 'Formal':
+			var ed = edType.a;
+			return _List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('four columns info-wrapper')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('School: ')
+										])),
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('ed-info')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(ed.school)
+										]))
+								])),
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Graduated: ')
+										])),
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('ed-info')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(ed.gradDate)
+										]))
+								])),
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Degree: ')
+										])),
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('ed-info')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(ed.degree)
+										]))
+								])),
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('GPA: ')
+										])),
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(ed.gpa)
+										]))
+								]))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('eight columns')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$ul,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('ed-resp')
+								]),
+							$author$project$Helpers$renderInfoList(ed.info))
+						]))
+				]);
+		case 'SelfEducated':
+			var ed = edType.a;
+			return _List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('four columns info-wrapper')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Self-Education')
+										]))
+								]))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('eight columns ed-resp')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$ul,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('ed-resp')
+								]),
+							$author$project$Helpers$renderInfoList(ed))
+						]))
+				]);
+		default:
+			var ed = edType.a;
+			return _List_fromArray(
+				[
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('four columns info-wrapper')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('School: ')
+										])),
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('ed-info')
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$a,
+											_List_fromArray(
+												[
+													$elm$html$Html$Attributes$href(ed.website)
+												]),
+											_List_fromArray(
+												[
+													$elm$html$Html$text(ed.school)
+												]))
+										]))
+								])),
+							A2(
+							$elm$html$Html$span,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h5,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('inline ed-em')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text('Attendance: ')
+										])),
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('ed-info')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(
+											A2($author$project$Helpers$formatStartEndDate, ed.startDate, ed.endDate))
+										]))
+								]))
+						])),
+					A2(
+					$elm$html$Html$div,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('eight columns ed-resp')
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$ul,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('ed-resp')
+								]),
+							$author$project$Helpers$renderInfoList(ed.info))
+						]))
+				]);
+	}
+};
+var $author$project$Education$renderEducation = function (edType) {
 	return A2(
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('job row')
+				$elm$html$Html$Attributes$class('education row full-shadow')
+			]),
+		$author$project$Education$educationInfo(edType));
+};
+var $author$project$Jobs$renderJob = function (job) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('job row full-shadow')
 			]),
 		_List_fromArray(
 			[
@@ -5419,7 +5801,7 @@ var $author$project$Main$renderJob = function (job) {
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$h6,
+								$elm$html$Html$h5,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('inline job-em')
@@ -5429,7 +5811,7 @@ var $author$project$Main$renderJob = function (job) {
 										$elm$html$Html$text('Employer: ')
 									])),
 								A2(
-								$elm$html$Html$p,
+								$elm$html$Html$h6,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('job-info')
@@ -5445,7 +5827,7 @@ var $author$project$Main$renderJob = function (job) {
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$h6,
+								$elm$html$Html$h5,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('inline job-em')
@@ -5455,7 +5837,7 @@ var $author$project$Main$renderJob = function (job) {
 										$elm$html$Html$text('Dates: ')
 									])),
 								A2(
-								$elm$html$Html$p,
+								$elm$html$Html$h6,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('job-info')
@@ -5463,7 +5845,7 @@ var $author$project$Main$renderJob = function (job) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text(
-										$author$project$Main$formatJobDate(job))
+										A2($author$project$Helpers$formatStartEndDate, job.startDate, job.endDate))
 									]))
 							])),
 						A2(
@@ -5472,7 +5854,7 @@ var $author$project$Main$renderJob = function (job) {
 						_List_fromArray(
 							[
 								A2(
-								$elm$html$Html$h6,
+								$elm$html$Html$h5,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('inline job-em')
@@ -5482,7 +5864,7 @@ var $author$project$Main$renderJob = function (job) {
 										$elm$html$Html$text('Title: ')
 									])),
 								A2(
-								$elm$html$Html$p,
+								$elm$html$Html$h6,
 								_List_fromArray(
 									[
 										$elm$html$Html$Attributes$class('job-info')
@@ -5507,18 +5889,109 @@ var $author$project$Main$renderJob = function (job) {
 							[
 								$elm$html$Html$Attributes$class('job-resp')
 							]),
-						A2(
-							$elm$core$List$map,
-							function (item) {
-								return A2(
-									$elm$html$Html$li,
-									_List_Nil,
-									_List_fromArray(
-										[
-											$elm$html$Html$text(item)
-										]));
-							},
-							job.info))
+						$author$project$Helpers$renderInfoList(job.info))
+					]))
+			]));
+};
+var $elm$html$Html$h4 = _VirtualDom_node('h4');
+var $elm$core$List$append = F2(
+	function (xs, ys) {
+		if (!ys.b) {
+			return xs;
+		} else {
+			return A3($elm$core$List$foldr, $elm$core$List$cons, ys, xs);
+		}
+	});
+var $elm$core$List$concat = function (lists) {
+	return A3($elm$core$List$foldr, $elm$core$List$append, _List_Nil, lists);
+};
+var $elm$core$List$repeatHelp = F3(
+	function (result, n, value) {
+		repeatHelp:
+		while (true) {
+			if (n <= 0) {
+				return result;
+			} else {
+				var $temp$result = A2($elm$core$List$cons, value, result),
+					$temp$n = n - 1,
+					$temp$value = value;
+				result = $temp$result;
+				n = $temp$n;
+				value = $temp$value;
+				continue repeatHelp;
+			}
+		}
+	});
+var $elm$core$List$repeat = F2(
+	function (n, value) {
+		return A3($elm$core$List$repeatHelp, _List_Nil, n, value);
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$star = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M480,207H308.6L256,47.9L203.4,207H32l140.2,97.9L117.6,464L256,365.4L394.4,464l-54.7-159.1L480,207z');
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$starHalf = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M172.248,304.931l-54.677,159.073L256,365.37l138.445,98.634L339.76,304.937L480,207H308.613L256,48.005L203.402,207H32L172.248,304.931zM256,100.75L297,224h131l-108,74.711l42.623,122.481L256,345.257V100.75z');
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$starOutline = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M480,207H308.6L256,47.9L203.4,207H32l140.2,97.9L117.6,464L256,365.4L394.4,464l-54.7-159.1L480,207zM362.6,421.2l-106.6-76l-106.6,76L192,298.7L84,224h131l41-123.3L297,224h131l-108,74.6L362.6,421.2z');
+var $author$project$Helpers$RGBA = F4(
+	function (red, green, blue, alpha) {
+		return {alpha: alpha, blue: blue, green: green, red: red};
+	});
+var $author$project$Helpers$white = A4($author$project$Helpers$RGBA, 1, 1, 1, 1);
+var $author$project$Skills$toStars = function (rating) {
+	var _v0 = ((rating - $elm$core$Basics$floor(rating)) > 0) ? _Utils_Tuple2(
+		$elm$core$Basics$floor(rating),
+		1) : _Utils_Tuple2(
+		$elm$core$Basics$floor(rating),
+		0);
+	var stars = _v0.a;
+	var halfStar = _v0.b;
+	var emptyStars = (5 - stars) - halfStar;
+	return $elm$core$List$concat(
+		_List_fromArray(
+			[
+				A2(
+				$elm$core$List$repeat,
+				stars,
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$star, 24, $author$project$Helpers$white)),
+				A2(
+				$elm$core$List$repeat,
+				halfStar,
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$starHalf, 24, $author$project$Helpers$white)),
+				A2(
+				$elm$core$List$repeat,
+				emptyStars,
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$starOutline, 24, $author$project$Helpers$white))
+			]));
+};
+var $author$project$Skills$renderSkill = function (skill) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('skill-card full-shadow')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$h4,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('center-text')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text(skill.name)
+					])),
+				A2(
+				$elm$html$Html$h5,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('center-text')
+					]),
+				$author$project$Skills$toStars(skill.rating)),
+				A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text(skill.blurb)
 					]))
 			]));
 };
@@ -5530,16 +6003,10 @@ var $elm$html$Html$Attributes$action = function (uri) {
 };
 var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('htmlFor');
 var $elm$html$Html$form = _VirtualDom_node('form');
-var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$label = _VirtualDom_node('label');
 var $elm$core$String$toLower = _String_toLower;
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $author$project$Main$RGBA = F4(
-	function (red, green, blue, alpha) {
-		return {alpha: alpha, blue: blue, green: green, red: red};
-	});
-var $author$project$Main$white = A4($author$project$Main$RGBA, 1, 1, 1, 1);
 var $author$project$Main$socialLink = F3(
 	function (name, url, icon) {
 		return A2(
@@ -5561,7 +6028,7 @@ var $author$project$Main$socialLink = F3(
 						]),
 					_List_fromArray(
 						[
-							A2(icon, 32, $author$project$Main$white),
+							A2(icon, 32, $author$project$Helpers$white),
 							$elm$html$Html$text(name)
 						])),
 					A2(
@@ -5619,7 +6086,10 @@ var $author$project$Main$renderBody = function (model) {
 		case 'About':
 			return A2(
 				$elm$html$Html$div,
-				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$id('About')
+					]),
 				_List_fromArray(
 					[
 						A2(
@@ -5630,7 +6100,7 @@ var $author$project$Main$renderBody = function (model) {
 							]),
 						_List_fromArray(
 							[
-								A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, 256, $author$project$Main$white)
+								A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, 256, $author$project$Helpers$white)
 							])),
 						A2(
 						$elm$html$Html$h2,
@@ -5715,6 +6185,7 @@ var $author$project$Main$renderBody = function (model) {
 								_List_Nil),
 								A3($author$project$Main$socialLink, 'Website', 'https://me.3digit.dev/', $j_panasiuk$elm_ionicons$Ionicon$Ios$world)
 							])),
+						A2($elm$html$Html$hr, _List_Nil, _List_Nil),
 						A2(
 						$elm$html$Html$div,
 						_List_fromArray(
@@ -5763,41 +6234,138 @@ var $author$project$Main$renderBody = function (model) {
 		case 'Work':
 			return A2(
 				$elm$html$Html$div,
-				_List_Nil,
 				_List_fromArray(
 					[
-						$author$project$Main$renderJob(
+						$elm$html$Html$Attributes$id('Work')
+					]),
+				_List_fromArray(
+					[
+						$author$project$Jobs$renderJob(
 						A5(
-							$author$project$Main$Job,
+							$author$project$Jobs$Job,
 							'Northwestern Mutual',
 							'July 2017',
 							'Present',
 							'Senior Test Engineer',
 							_List_fromArray(
-								['Lead tester on a brand new rewrite of front-end for a large enterprise application', 'Developed automation strategy to make end-to-end tests run 3x faster with no loss of reliability', 'Lead training classes for helping test engineers learn API testing', 'Scripted automation of hundreds of tests covering a large application', 'Developed process, documentation, and organization of actual codebase and test codebase', 'Helped to greatly improve reliability, cleanliness, and organization of entire testing repo']))),
-						$author$project$Main$renderJob(
-						A5($author$project$Main$Job, 'Schweitzer Engineering Labs, Inc.', 'February 2014', 'June 2017', 'Software Engineer', _List_Nil))
+								[
+									$author$project$Helpers$TextItem('Lead tester on a brand new rewrite of front-end for a large enterprise application'),
+									$author$project$Helpers$TextItem('Developed automation strategy to make end-to-end tests run 3x faster with no loss of reliability'),
+									$author$project$Helpers$TextItem('Lead training classes for helping test engineers learn API testing'),
+									$author$project$Helpers$TextItem('Scripted automation of hundreds of tests covering a large application'),
+									$author$project$Helpers$TextItem('Developed process, documentation, and organization of actual codebase and test codebase'),
+									$author$project$Helpers$TextItem('Helped to greatly improve reliability, cleanliness, and organization of entire testing repo')
+								]))),
+						$author$project$Jobs$renderJob(
+						A5(
+							$author$project$Jobs$Job,
+							'Schweitzer Engineering Labs, Inc.',
+							'February 2014',
+							'June 2017',
+							'Software Engineer',
+							_List_fromArray(
+								[
+									$author$project$Helpers$TextItem('Helped to create and bring to production the SEL-5056 Software Defined Networking tool'),
+									A2($author$project$Helpers$LinkItem, 'https://cdn.selinc.com/assets/Literature/Product%20Literature/Data%20Sheets/5056_DS_20190614.pdf?v=20190703-203312', 'SEL-5056 SDN'),
+									$author$project$Helpers$TextItem('Developed automation testing suite using Python and Mininet to help create a VM \'farm\' to build a fake network for testing'),
+									$author$project$Helpers$TextItem('Helped to create a heavily-OOP C# application to customer specifications')
+								]))),
+						$author$project$Jobs$renderJob(
+						A5(
+							$author$project$Jobs$Job,
+							'Guidance Software',
+							'August 2012',
+							'July 2013',
+							'Professional Services Consultant',
+							_List_fromArray(
+								[
+									$author$project$Helpers$TextItem('Became certified with \"EnCase\", a cybersecurity forensics software suite'),
+									$author$project$Helpers$TextItem('Working with outside companies to install, troubleshoot, and instruct on EnCase'),
+									$author$project$Helpers$TextItem('Using Guidance\'s proprietary language as well as C# to create connections between outside software and EnCase.')
+								])))
 					]));
 		case 'Education':
 			return A2(
 				$elm$html$Html$div,
-				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+						$elm$html$Html$Attributes$id('Education')
+					]),
+				_List_fromArray(
+					[
+						$author$project$Education$renderEducation(
+						$author$project$Education$Formal(
+							A5(
+								$author$project$Education$FormalEd,
+								'Morningside College',
+								'May 2012',
+								'B.S. Computer Science',
+								'3.2',
+								_List_fromArray(
+									[
+										$author$project$Helpers$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
+										$author$project$Helpers$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+										$author$project$Helpers$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
+										$author$project$Helpers$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
+										$author$project$Helpers$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+										$author$project$Helpers$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+									])))),
+						$author$project$Education$renderEducation(
+						$author$project$Education$Camp(
+							A5(
+								$author$project$Education$BootCamp,
+								'DevCodeCamp',
+								'https://devcodecamp.com/',
+								'March 2015',
+								'March 2016',
+								_List_fromArray(
+									[
+										$author$project$Helpers$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
+										$author$project$Helpers$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+										$author$project$Helpers$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
+										$author$project$Helpers$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
+										$author$project$Helpers$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+										$author$project$Helpers$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+									])))),
+						$author$project$Education$renderEducation(
+						$author$project$Education$SelfEducated(
+							_List_fromArray(
+								[
+									$author$project$Helpers$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
+									$author$project$Helpers$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+									$author$project$Helpers$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
+									$author$project$Helpers$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
+									$author$project$Helpers$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+									$author$project$Helpers$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+								])))
 					]));
 		case 'Skills':
 			return A2(
 				$elm$html$Html$div,
-				_List_Nil,
 				_List_fromArray(
 					[
-						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-					]));
+						$elm$html$Html$Attributes$id('Skills'),
+						$elm$html$Html$Attributes$class('skill-list')
+					]),
+				A2(
+					$elm$core$List$map,
+					$author$project$Skills$renderSkill,
+					_List_fromArray(
+						[
+							A3($author$project$Skills$Skill, 'Python', 4.5, 'Primary hobby language, no industry experience (but VERY much wanted)'),
+							A3($author$project$Skills$Skill, 'Elm', 2.5, 'Current favorite hobby web language, no industry experience (also very much wanted)'),
+							A3($author$project$Skills$Skill, 'Nim', 2.0, 'New backend compiled language to learn metaprogramming'),
+							A3($author$project$Skills$Skill, 'JavaScript', 3.5, 'Heavily used in industry experience, including production apps'),
+							A3($author$project$Skills$Skill, 'C#', 3.5, 'Heavily used in industry experience, including several production apps'),
+							A3($author$project$Skills$Skill, 'Regex', 4.0, 'Very knowledgeable up to advanced topics; Used heavily whenever I can')
+						])));
 		default:
 			return A2(
 				$elm$html$Html$div,
-				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$id('Portfolio')
+					]),
 				_List_fromArray(
 					[
 						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
@@ -5806,14 +6374,6 @@ var $author$project$Main$renderBody = function (model) {
 };
 var $author$project$Main$NavClicked = function (a) {
 	return {$: 'NavClicked', a: a};
-};
-var $elm$html$Html$a = _VirtualDom_node('a');
-var $elm$html$Html$h4 = _VirtualDom_node('h4');
-var $elm$html$Html$Attributes$href = function (url) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'href',
-		_VirtualDom_noJavaScriptUri(url));
 };
 var $elm$virtual_dom$VirtualDom$Normal = function (a) {
 	return {$: 'Normal', a: a};
@@ -5910,7 +6470,7 @@ var $j_panasiuk$elm_ionicons$Ionicon$university = $j_panasiuk$elm_ionicons$Ionic
 			$j_panasiuk$elm_ionicons$Ionicon$Internal$pg1('256,64 32,176.295 64,197.367 64,400 96,416 96,217.849 255.852,320 387.996,234.549 480,174.727'),
 			$j_panasiuk$elm_ionicons$Ionicon$Internal$p1('M390.13,256L256,343.768L120.531,256L112,337.529C128,349.984,224,416,256.002,448C288,416,384,350.031,400,337.561 L390.13,256z')
 		]));
-var $author$project$Main$pageIcon = F2(
+var $author$project$Helpers$pageIcon = F2(
 	function (page, color) {
 		var size = 30;
 		switch (page.$) {
@@ -5926,7 +6486,7 @@ var $author$project$Main$pageIcon = F2(
 				return A2($j_panasiuk$elm_ionicons$Ionicon$briefcase, size, color);
 		}
 	});
-var $author$project$Main$pageLink = function (page) {
+var $author$project$Helpers$pageLink = function (page) {
 	switch (page.$) {
 		case 'About':
 			return 'about';
@@ -5949,7 +6509,7 @@ var $author$project$Main$navLink = F2(
 				[
 					$elm$html$Html$Attributes$class('nav-link'),
 					$elm$html$Html$Attributes$href(
-					$author$project$Main$pageLink(page)),
+					$author$project$Helpers$pageLink(page)),
 					$elm$html$Html$Events$onClick(
 					$author$project$Main$NavClicked(page))
 				]),
@@ -5963,9 +6523,9 @@ var $author$project$Main$navLink = F2(
 						]),
 					_List_fromArray(
 						[
-							A2($author$project$Main$pageIcon, page, $author$project$Main$white),
+							A2($author$project$Helpers$pageIcon, page, $author$project$Helpers$white),
 							$elm$html$Html$text(
-							$author$project$Main$pageString(page))
+							$author$project$Helpers$pageString(page))
 						]))
 				]));
 	});
@@ -5974,15 +6534,15 @@ var $author$project$Main$renderNavBar = function (model) {
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('three columns nav-bar')
+				$elm$html$Html$Attributes$class('three columns nav-bar full-shadow')
 			]),
 		_List_fromArray(
 			[
-				A2($author$project$Main$navLink, model, $author$project$Main$About),
-				A2($author$project$Main$navLink, model, $author$project$Main$Work),
-				A2($author$project$Main$navLink, model, $author$project$Main$Education),
-				A2($author$project$Main$navLink, model, $author$project$Main$Skills),
-				A2($author$project$Main$navLink, model, $author$project$Main$Portfolio)
+				A2($author$project$Main$navLink, model, $author$project$Helpers$About),
+				A2($author$project$Main$navLink, model, $author$project$Helpers$Work),
+				A2($author$project$Main$navLink, model, $author$project$Helpers$Education),
+				A2($author$project$Main$navLink, model, $author$project$Helpers$Skills),
+				A2($author$project$Main$navLink, model, $author$project$Helpers$Portfolio)
 			]));
 };
 var $author$project$Main$view = function (model) {
@@ -6027,7 +6587,7 @@ var $author$project$Main$view = function (model) {
 												_List_fromArray(
 													[
 														$elm$html$Html$text(
-														$author$project$Main$pageString(model.page))
+														$author$project$Helpers$pageString(model.page))
 													]))
 											]))
 									]))
