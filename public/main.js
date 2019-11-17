@@ -5145,24 +5145,6 @@ var $elm$core$Platform$Sub$none = $elm$core$Platform$Sub$batch(_List_Nil);
 var $author$project$Main$subscriptions = function (_v0) {
 	return $elm$core$Platform$Sub$none;
 };
-var $author$project$Helpers$About = {$: 'About'};
-var $author$project$Helpers$Education = {$: 'Education'};
-var $author$project$Helpers$Skills = {$: 'Skills'};
-var $author$project$Helpers$Work = {$: 'Work'};
-var $author$project$Helpers$anchorToPage = function (anchor) {
-	switch (anchor) {
-		case 'Work':
-			return $author$project$Helpers$Work;
-		case 'Education':
-			return $author$project$Helpers$Education;
-		case 'Skills':
-			return $author$project$Helpers$Skills;
-		case 'Portfolio':
-			return $author$project$Helpers$Portfolio;
-		default:
-			return $author$project$Helpers$About;
-	}
-};
 var $elm$browser$Browser$Navigation$load = _Browser_load;
 var $elm$browser$Browser$Navigation$pushUrl = _Browser_pushUrl;
 var $elm$url$Url$addPort = F2(
@@ -5209,6 +5191,10 @@ var $elm$url$Url$toString = function (url) {
 					_Utils_ap(http, url.host)),
 				url.path)));
 };
+var $author$project$Helpers$About = {$: 'About'};
+var $author$project$Helpers$Education = {$: 'Education'};
+var $author$project$Helpers$Skills = {$: 'Skills'};
+var $author$project$Helpers$Work = {$: 'Work'};
 var $elm_community$list_extra$List$Extra$last = function (items) {
 	last:
 	while (true) {
@@ -5279,21 +5265,12 @@ var $author$project$Main$update = F2(
 							url: url
 						}),
 					$elm$core$Platform$Cmd$none);
-			case 'NavClicked':
+			default:
 				var page = msg.a;
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
 						{page: page}),
-					$elm$core$Platform$Cmd$none);
-			default:
-				var anchor = msg.a;
-				return _Utils_Tuple2(
-					_Utils_update(
-						model,
-						{
-							page: $author$project$Helpers$anchorToPage(anchor)
-						}),
 					$elm$core$Platform$Cmd$none);
 		}
 	});
