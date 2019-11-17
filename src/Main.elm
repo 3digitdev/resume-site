@@ -135,14 +135,16 @@ view model =
 
 socialLink : String -> String -> (Int -> RGBA -> Html Msg) -> Html Msg
 socialLink name url icon =
-    Html.form
-        [ class "inline", action url ]
-        [ label
-            [ for (String.toLower name), class "social inline" ]
-            [ icon 32 white, text name ]
-        , input
-            [ id (String.toLower name), class "hidden inline", type_ "submit" ]
-            []
+    a [ href url, class "nav-link", title url ]
+        [ Html.form
+            [ class "inline", action url ]
+            [ label
+                [ for (String.toLower name), class "social inline" ]
+                [ icon 32 white, text name ]
+            , input
+                [ id (String.toLower name), class "hidden inline", type_ "submit" ]
+                []
+            ]
         ]
 
 

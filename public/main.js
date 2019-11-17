@@ -6005,42 +6005,54 @@ var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('ht
 var $elm$html$Html$form = _VirtualDom_node('form');
 var $elm$html$Html$input = _VirtualDom_node('input');
 var $elm$html$Html$label = _VirtualDom_node('label');
+var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
 var $elm$core$String$toLower = _String_toLower;
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
 var $author$project$Main$socialLink = F3(
 	function (name, url, icon) {
 		return A2(
-			$elm$html$Html$form,
+			$elm$html$Html$a,
 			_List_fromArray(
 				[
-					$elm$html$Html$Attributes$class('inline'),
-					$elm$html$Html$Attributes$action(url)
+					$elm$html$Html$Attributes$href(url),
+					$elm$html$Html$Attributes$class('nav-link'),
+					$elm$html$Html$Attributes$title(url)
 				]),
 			_List_fromArray(
 				[
 					A2(
-					$elm$html$Html$label,
+					$elm$html$Html$form,
 					_List_fromArray(
 						[
-							$elm$html$Html$Attributes$for(
-							$elm$core$String$toLower(name)),
-							$elm$html$Html$Attributes$class('social inline')
+							$elm$html$Html$Attributes$class('inline'),
+							$elm$html$Html$Attributes$action(url)
 						]),
 					_List_fromArray(
 						[
-							A2(icon, 32, $author$project$Helpers$white),
-							$elm$html$Html$text(name)
-						])),
-					A2(
-					$elm$html$Html$input,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$id(
-							$elm$core$String$toLower(name)),
-							$elm$html$Html$Attributes$class('hidden inline'),
-							$elm$html$Html$Attributes$type_('submit')
-						]),
-					_List_Nil)
+							A2(
+							$elm$html$Html$label,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$for(
+									$elm$core$String$toLower(name)),
+									$elm$html$Html$Attributes$class('social inline')
+								]),
+							_List_fromArray(
+								[
+									A2(icon, 32, $author$project$Helpers$white),
+									$elm$html$Html$text(name)
+								])),
+							A2(
+							$elm$html$Html$input,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id(
+									$elm$core$String$toLower(name)),
+									$elm$html$Html$Attributes$class('hidden inline'),
+									$elm$html$Html$Attributes$type_('submit')
+								]),
+							_List_Nil)
+						]))
 				]));
 	});
 var $elm$html$Html$Attributes$src = function (url) {
