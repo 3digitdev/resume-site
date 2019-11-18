@@ -1,20 +1,15 @@
 module Main exposing (Model, Msg(..), init, main, subscriptions, update, view)
 
-import About exposing (..)
 import Browser
 import Browser.Navigation as Nav
-import Education exposing (..)
-import Helpers exposing (..)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (onClick)
 import Ionicon as Ion
 import Ionicon.Ios as IonIos
 import Ionicon.Social as IonSoc
-import Jobs exposing (..)
 import List.Extra exposing (greedyGroupsOf)
-import Portfolio exposing (..)
-import Skills exposing (..)
+import Resume exposing (..)
 import Url
 
 
@@ -55,8 +50,8 @@ initModel : Url.Url -> Nav.Key -> Model
 initModel url key =
     { key = key
     , url = url
-    , page = Portfolio
-    , title = pageTitle Portfolio
+    , page = About
+    , title = pageTitle About
     }
 
 
