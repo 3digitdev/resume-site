@@ -5299,13 +5299,24 @@ var $author$project$Education$FormalEd = F5(
 	function (school, gradDate, degree, gpa, info) {
 		return {degree: degree, gpa: gpa, gradDate: gradDate, info: info, school: school};
 	});
+var $author$project$Portfolio$ImageCard = function (a) {
+	return {$: 'ImageCard', a: a};
+};
 var $author$project$Jobs$Job = F5(
 	function (employer, startDate, endDate, title, info) {
 		return {employer: employer, endDate: endDate, info: info, startDate: startDate, title: title};
 	});
+var $author$project$Portfolio$LinkCard = F2(
+	function (a, b) {
+		return {$: 'LinkCard', a: a, b: b};
+	});
 var $author$project$Helpers$LinkItem = F2(
 	function (a, b) {
 		return {$: 'LinkItem', a: a, b: b};
+	});
+var $author$project$Portfolio$PortfolioItem = F2(
+	function (title, cards) {
+		return {cards: cards, title: title};
 	});
 var $author$project$Education$SelfEducated = function (a) {
 	return {$: 'SelfEducated', a: a};
@@ -5314,9 +5325,14 @@ var $author$project$Skills$Skill = F3(
 	function (name, rating, blurb) {
 		return {blurb: blurb, name: name, rating: rating};
 	});
+var $author$project$Portfolio$TextCard = F2(
+	function (a, b) {
+		return {$: 'TextCard', a: a, b: b};
+	});
 var $author$project$Helpers$TextItem = function (a) {
 	return {$: 'TextItem', a: a};
 };
+var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$svg$Svg$Attributes$d = _VirtualDom_attribute('d');
 var $elm$core$Basics$clamp = F3(
 	function (low, high, number) {
@@ -5413,25 +5429,267 @@ var $elm$html$Html$h2 = _VirtualDom_node('h2');
 var $elm$html$Html$h3 = _VirtualDom_node('h3');
 var $elm$html$Html$h5 = _VirtualDom_node('h5');
 var $elm$html$Html$hr = _VirtualDom_node('hr');
-var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
 var $elm$html$Html$img = _VirtualDom_node('img');
 var $j_panasiuk$elm_ionicons$Ionicon$Social$linkedin = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M417.2,64H96.8C79.3,64,64,76.6,64,93.9v321.1c0,17.4,15.3,32.9,32.8,32.9h320.3c17.6,0,30.8-15.6,30.8-32.9V93.9C448,76.6,434.7,64,417.2,64zM183,384h-55V213h55V384zM157.4,187H157c-17.6,0-29-13.1-29-29.5c0-16.7,11.7-29.5,29.7-29.5c18,0,29,12.7,29.4,29.5C187.1,173.9,175.7,187,157.4,187zM384,384h-55v-93.5c0-22.4-8-37.7-27.9-37.7c-15.2,0-24.2,10.3-28.2,20.3c-1.5,3.6-1.9,8.5-1.9,13.5V384h-55V213h55v23.8c8-11.4,20.5-27.8,49.6-27.8c36.1,0,63.4,23.8,63.4,75.1V384z');
 var $elm$html$Html$p = _VirtualDom_node('p');
 var $elm$html$Html$a = _VirtualDom_node('a');
-var $author$project$Helpers$formatStartEndDate = F2(
-	function (start, end) {
-		return ((end === '') || (end === 'Present')) ? (start + (' ⟹ ' + 'Present')) : (start + (' ⟹ ' + end));
-	});
-var $elm$html$Html$h6 = _VirtualDom_node('h6');
+var $elm$html$Html$Attributes$action = function (uri) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'action',
+		_VirtualDom_noJavaScriptUri(uri));
+};
+var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('htmlFor');
+var $elm$html$Html$form = _VirtualDom_node('form');
 var $elm$html$Html$Attributes$href = function (url) {
 	return A2(
 		$elm$html$Html$Attributes$stringProperty,
 		'href',
 		_VirtualDom_noJavaScriptUri(url));
 };
-var $elm$html$Html$li = _VirtualDom_node('li');
+var $elm$html$Html$input = _VirtualDom_node('input');
+var $elm$html$Html$label = _VirtualDom_node('label');
 var $elm$virtual_dom$VirtualDom$text = _VirtualDom_text;
 var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
+var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
+var $elm$core$String$toLower = _String_toLower;
+var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
+var $author$project$Helpers$RGBA = F4(
+	function (red, green, blue, alpha) {
+		return {alpha: alpha, blue: blue, green: green, red: red};
+	});
+var $author$project$Helpers$white = A4($author$project$Helpers$RGBA, 1, 1, 1, 1);
+var $author$project$About$socialLink = F3(
+	function (name, url, icon) {
+		return A2(
+			$elm$html$Html$a,
+			_List_fromArray(
+				[
+					$elm$html$Html$Attributes$href(url),
+					$elm$html$Html$Attributes$class('nav-link'),
+					$elm$html$Html$Attributes$title(url)
+				]),
+			_List_fromArray(
+				[
+					A2(
+					$elm$html$Html$form,
+					_List_fromArray(
+						[
+							$elm$html$Html$Attributes$class('inline'),
+							$elm$html$Html$Attributes$action(url)
+						]),
+					_List_fromArray(
+						[
+							A2(
+							$elm$html$Html$label,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$for(
+									$elm$core$String$toLower(name)),
+									$elm$html$Html$Attributes$class('social inline')
+								]),
+							_List_fromArray(
+								[
+									A2(icon, 32, $author$project$Helpers$white),
+									$elm$html$Html$text(name)
+								])),
+							A2(
+							$elm$html$Html$input,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$id(
+									$elm$core$String$toLower(name)),
+									$elm$html$Html$Attributes$class('hidden inline'),
+									$elm$html$Html$Attributes$type_('submit')
+								]),
+							_List_Nil)
+						]))
+				]));
+	});
+var $elm$html$Html$Attributes$src = function (url) {
+	return A2(
+		$elm$html$Html$Attributes$stringProperty,
+		'src',
+		_VirtualDom_noJavaScriptOrHtmlUri(url));
+};
+var $j_panasiuk$elm_ionicons$Ionicon$Social$twitter = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M492,109.5c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5C399.8,75.8,374.6,64,346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1c-80.5-4-151.9-42.6-199.6-101.3c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.2,63.3,43.2,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5c-7.8,0-15.5-0.5-23.1-1.4C62.8,432,113.7,448,168.3,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5C462.6,146,479,129,492,109.5z');
+var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
+var $j_panasiuk$elm_ionicons$Ionicon$Internal$ps = F3(
+	function (ds, size, color) {
+		return A2(
+			$j_panasiuk$elm_ionicons$Ionicon$Internal$svg,
+			size,
+			_List_fromArray(
+				[
+					A2(
+					$elm$svg$Svg$g,
+					_List_Nil,
+					A2(
+						$elm$core$List$map,
+						function (d) {
+							return A2(
+								$elm$svg$Svg$path,
+								_List_fromArray(
+									[
+										$elm$svg$Svg$Attributes$d(d),
+										$elm$svg$Svg$Attributes$fill(
+										$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
+									]),
+								_List_Nil);
+						},
+						ds))
+				]));
+	});
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$world = $j_panasiuk$elm_ionicons$Ionicon$Internal$ps(
+	_List_fromArray(
+		['M256,48c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.2,0-0.2,0C140.8,48.3,48,141.3,48,256c0,114.7,92.8,207.7,207.5,208 c0.1,0,0.2,0,0.2,0c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.2,0c114.9,0,208-93.1,208-208C464,141.1,370.9,48,256,48z M256,447.4 c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.2,0-0.2,0C150.1,447.1,64.6,361.5,64.6,256c0-105.5,85.4-191.1,190.9-191.3 c0.1,0,0.1,0,0.2,0c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.2,0c105.7,0,191.4,85.7,191.4,191.4C447.4,361.7,361.7,447.4,256,447.4z', 'M322.3,171.8c-18.7,4.5-38,7.2-57.9,7.8v68.1H332C331.4,219.6,327.9,194.1,322.3,171.8z', 'M264.3,82.5v81.9c18.5-0.6,36.5-3,53.8-7.2C305,115.8,284.6,88.6,264.3,82.5z', 'M193.4,157.1c17.5,4.2,35.6,6.7,54.2,7.3V82.3C227.3,88.2,206.6,115.4,193.4,157.1z', 'M380.6,133.4c-22.6-23-51.5-39.8-83.9-47.5c14.8,15.3,27.2,38.7,36.1,67.3C349.5,148.1,365.5,141.5,380.6,133.4z', 'M347.3,247.7h83.3c-1.8-38.8-16.3-74.4-39.5-102.6c-17.1,9.4-35.2,17.1-54.1,22.8C343.1,191.9,346.7,219,347.3,247.7z', 'M179.5,247.7h68.2v-68.1c-20.1-0.6-39.6-3.3-58.4-7.9C183.6,194,180.1,219.6,179.5,247.7z', 'M332,264.3h-67.7v68c19.9,0.6,39.3,3.2,58,7.8C327.9,317.9,331.4,292.3,332,264.3z', 'M189.3,340.2c18.8-4.6,38.3-7.3,58.4-7.9v-68h-68.2C180.1,292.4,183.6,318,189.3,340.2z', 'M247.7,429.6v-82.1c-18.6,0.6-36.8,3.1-54.3,7.3C206.6,396.5,227.3,423.8,247.7,429.6z', 'M296.7,426.1c32.4-7.8,61.3-24.5,84-47.6c-15.1-8.1-31.1-14.7-47.8-19.8C324,387.4,311.5,410.7,296.7,426.1z', 'M214.7,86.1c-32.1,7.8-60.8,24.5-83.3,47.4c15,8,30.8,14.6,47.3,19.6C187.6,124.6,200,101.4,214.7,86.1z', 'M337,344.1c19,5.7,37.1,13.4,54.2,22.8c23.2-28.2,37.7-63.8,39.5-102.6h-83.3C346.7,293,343.1,320,337,344.1z', 'M264.3,347.5v82c20.3-6.1,40.7-33.3,53.8-74.8C300.8,350.5,282.8,348.1,264.3,347.5z', 'M174.6,167.8c-18.8-5.7-36.8-13.3-53.7-22.7c-23.2,28.2-37.7,63.8-39.5,102.6h82.9C164.8,218.9,168.5,191.8,174.6,167.8z', 'M164.2,264.3H81.3c1.8,38.8,16.3,74.4,39.5,102.6c16.9-9.3,34.9-17,53.7-22.7C168.5,320.2,164.8,293.1,164.2,264.3z', 'M131.3,378.5c22.5,22.9,51.2,39.6,83.4,47.4c-14.7-15.3-27.1-38.6-36-67.1C162.2,363.9,146.3,370.5,131.3,378.5z']));
+var $author$project$About$renderBio = _List_fromArray(
+	[
+		A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('avatar')
+			]),
+		_List_fromArray(
+			[
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, 256, $author$project$Helpers$white)
+			])),
+		A2(
+		$elm$html$Html$h2,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('about full-name')
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('Max Andrew Bach Bussiere')
+			])),
+		A2(
+		$elm$html$Html$h5,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('about')
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('Milwaukee 一 WI 一 U.S.A.')
+			])),
+		A2(
+		$elm$html$Html$img,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('about email'),
+				$elm$html$Html$Attributes$src('email.png')
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('email image')
+			])),
+		A2(
+		$elm$html$Html$h3,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('about')
+			]),
+		_List_fromArray(
+			[
+				$elm$html$Html$text('Social:')
+			])),
+		A2(
+		$elm$html$Html$p,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('about')
+			]),
+		_List_fromArray(
+			[
+				A3($author$project$About$socialLink, 'GitHub', 'https://github.com/3digitdev/', $j_panasiuk$elm_ionicons$Ionicon$Social$github),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('inline spacer')
+					]),
+				_List_Nil),
+				A3($author$project$About$socialLink, 'Twitter', 'https://www.twitter.com/', $j_panasiuk$elm_ionicons$Ionicon$Social$twitter),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('inline spacer')
+					]),
+				_List_Nil),
+				A3($author$project$About$socialLink, 'Facebook', 'https://www.facebook.com/', $j_panasiuk$elm_ionicons$Ionicon$Social$facebook),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('inline spacer')
+					]),
+				_List_Nil),
+				A3($author$project$About$socialLink, 'LinkedIn', 'https://www.linkedin.com/in/maxbuss', $j_panasiuk$elm_ionicons$Ionicon$Social$linkedin),
+				A2(
+				$elm$html$Html$div,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('inline spacer')
+					]),
+				_List_Nil),
+				A3($author$project$About$socialLink, 'Website', 'https://me.3digit.dev/', $j_panasiuk$elm_ionicons$Ionicon$Ios$world)
+			])),
+		A2($elm$html$Html$hr, _List_Nil, _List_Nil),
+		A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('bio')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$h3,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('inline')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Bio: ')
+					])),
+				A2(
+				$elm$html$Html$p,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$class('inline')
+					]),
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+					])),
+				A2($elm$html$Html$p, _List_Nil, _List_Nil),
+				A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+					])),
+				A2(
+				$elm$html$Html$p,
+				_List_Nil,
+				_List_fromArray(
+					[
+						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+					]))
+			]))
+	]);
+var $author$project$Helpers$formatStartEndDate = F2(
+	function (start, end) {
+		return ((end === '') || (end === 'Present')) ? (start + (' ⟹ ' + 'Present')) : (start + (' ⟹ ' + end));
+	});
+var $elm$html$Html$h6 = _VirtualDom_node('h6');
+var $elm$html$Html$li = _VirtualDom_node('li');
 var $author$project$Helpers$renderInfoList = function (infoList) {
 	return A2(
 		$elm$core$List$map,
@@ -5870,6 +6128,137 @@ var $author$project$Jobs$renderJob = function (job) {
 					]))
 			]));
 };
+var $j_panasiuk$elm_ionicons$Ionicon$link = $j_panasiuk$elm_ionicons$Ionicon$Internal$ps(
+	_List_fromArray(
+		['M256.5,208H256v0C256.2,208,256.3,208,256.5,208z', 'M368.5,160H320c0,0,26,17,31.6,48H368h0.5c17.6,0,31.5,13.9,31.5,31.5v32c0,17.6-13.9,32.5-31.5,32.5h-112 c-17.6,0-32.5-14.9-32.5-32.5V240h-48v31.5c0,11.5,2.5,22.5,6.9,32.5c12.6,28.2,40.9,48,73.6,48h112c44.2,0,79.5-36.3,79.5-80.5 v-32C448,195.3,412.7,160,368.5,160z', 'M329.6,208c-12.1-28.3-40.1-48-73.1-48h-112c-44.2,0-80.5,35.3-80.5,79.5v32c0,44.2,36.3,80.5,80.5,80.5H192 c0,0-25.8-17-32.1-48h-15.4c-17.6,0-32.5-14.9-32.5-32.5v-32c0-17.6,14.9-31.5,32.5-31.5H256h0.5c17.6,0,31.5,13.9,31.5,31.5v32 c0,0.2,0,0.3,0,0.5h48c0-0.2,0-0.3,0-0.5v-32C336,228.3,333.7,217.6,329.6,208z']));
+var $author$project$Portfolio$renderCardGroup = function (cardGroup) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('folio-cards')
+			]),
+		A2(
+			$elm$core$List$map,
+			function (card) {
+				switch (card.$) {
+					case 'TextCard':
+						var title = card.a;
+						var items = card.b;
+						return A2(
+							$elm$html$Html$div,
+							_List_Nil,
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$h6,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('folio-em center-text')
+										]),
+									_List_fromArray(
+										[
+											$elm$html$Html$text(title)
+										])),
+									A2(
+									$elm$html$Html$ul,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$class('folio-card')
+										]),
+									$author$project$Helpers$renderInfoList(items))
+								]));
+					case 'ImageCard':
+						var imgPath = card.a;
+						return A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('folio-image')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$img,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$src(imgPath)
+										]),
+									_List_Nil)
+								]));
+					default:
+						var url = card.a;
+						var txt = card.b;
+						return A2(
+							$elm$html$Html$div,
+							_List_fromArray(
+								[
+									$elm$html$Html$Attributes$class('center-text folio-link')
+								]),
+							_List_fromArray(
+								[
+									A2(
+									$elm$html$Html$a,
+									_List_fromArray(
+										[
+											$elm$html$Html$Attributes$href(url)
+										]),
+									_List_fromArray(
+										[
+											A2(
+											$elm$html$Html$div,
+											_List_Nil,
+											_List_fromArray(
+												[
+													A2($j_panasiuk$elm_ionicons$Ionicon$link, 40, $author$project$Helpers$white),
+													A2(
+													$elm$html$Html$h3,
+													_List_Nil,
+													_List_fromArray(
+														[
+															$elm$html$Html$text(txt)
+														]))
+												]))
+										]))
+								]));
+				}
+			},
+			cardGroup));
+};
+var $author$project$Portfolio$renderPortfolioItem = function (item) {
+	return A2(
+		$elm$html$Html$div,
+		_List_fromArray(
+			[
+				$elm$html$Html$Attributes$class('folio-item full-shadow')
+			]),
+		_List_fromArray(
+			[
+				A2(
+				$elm$html$Html$div,
+				_List_Nil,
+				_List_fromArray(
+					[
+						A2(
+						$elm$html$Html$div,
+						_List_fromArray(
+							[
+								$elm$html$Html$Attributes$class('folio-title center-text')
+							]),
+						_List_fromArray(
+							[
+								A2(
+								$elm$html$Html$h2,
+								_List_Nil,
+								_List_fromArray(
+									[
+										$elm$html$Html$text(item.title)
+									]))
+							]))
+					])),
+				$author$project$Portfolio$renderCardGroup(item.cards)
+			]));
+};
 var $elm$html$Html$h4 = _VirtualDom_node('h4');
 var $elm$core$List$append = F2(
 	function (xs, ys) {
@@ -5906,11 +6295,6 @@ var $elm$core$List$repeat = F2(
 var $j_panasiuk$elm_ionicons$Ionicon$Ios$star = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M480,207H308.6L256,47.9L203.4,207H32l140.2,97.9L117.6,464L256,365.4L394.4,464l-54.7-159.1L480,207z');
 var $j_panasiuk$elm_ionicons$Ionicon$Ios$starHalf = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M172.248,304.931l-54.677,159.073L256,365.37l138.445,98.634L339.76,304.937L480,207H308.613L256,48.005L203.402,207H32L172.248,304.931zM256,100.75L297,224h131l-108,74.711l42.623,122.481L256,345.257V100.75z');
 var $j_panasiuk$elm_ionicons$Ionicon$Ios$starOutline = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M480,207H308.6L256,47.9L203.4,207H32l140.2,97.9L117.6,464L256,365.4L394.4,464l-54.7-159.1L480,207zM362.6,421.2l-106.6-76l-106.6,76L192,298.7L84,224h131l41-123.3L297,224h131l-108,74.6L362.6,421.2z');
-var $author$project$Helpers$RGBA = F4(
-	function (red, green, blue, alpha) {
-		return {alpha: alpha, blue: blue, green: green, red: red};
-	});
-var $author$project$Helpers$white = A4($author$project$Helpers$RGBA, 1, 1, 1, 1);
 var $author$project$Skills$toStars = function (rating) {
 	var _v0 = ((rating - $elm$core$Basics$floor(rating)) > 0) ? _Utils_Tuple2(
 		$elm$core$Basics$floor(rating),
@@ -5942,7 +6326,7 @@ var $author$project$Skills$renderSkill = function (skill) {
 		$elm$html$Html$div,
 		_List_fromArray(
 			[
-				$elm$html$Html$Attributes$class('skill-card full-shadow')
+				$elm$html$Html$Attributes$class('skill-card')
 			]),
 		_List_fromArray(
 			[
@@ -5972,103 +6356,6 @@ var $author$project$Skills$renderSkill = function (skill) {
 					]))
 			]));
 };
-var $elm$html$Html$Attributes$action = function (uri) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'action',
-		_VirtualDom_noJavaScriptUri(uri));
-};
-var $elm$html$Html$Attributes$for = $elm$html$Html$Attributes$stringProperty('htmlFor');
-var $elm$html$Html$form = _VirtualDom_node('form');
-var $elm$html$Html$input = _VirtualDom_node('input');
-var $elm$html$Html$label = _VirtualDom_node('label');
-var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
-var $elm$core$String$toLower = _String_toLower;
-var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $author$project$Main$socialLink = F3(
-	function (name, url, icon) {
-		return A2(
-			$elm$html$Html$a,
-			_List_fromArray(
-				[
-					$elm$html$Html$Attributes$href(url),
-					$elm$html$Html$Attributes$class('nav-link'),
-					$elm$html$Html$Attributes$title(url)
-				]),
-			_List_fromArray(
-				[
-					A2(
-					$elm$html$Html$form,
-					_List_fromArray(
-						[
-							$elm$html$Html$Attributes$class('inline'),
-							$elm$html$Html$Attributes$action(url)
-						]),
-					_List_fromArray(
-						[
-							A2(
-							$elm$html$Html$label,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$for(
-									$elm$core$String$toLower(name)),
-									$elm$html$Html$Attributes$class('social inline')
-								]),
-							_List_fromArray(
-								[
-									A2(icon, 32, $author$project$Helpers$white),
-									$elm$html$Html$text(name)
-								])),
-							A2(
-							$elm$html$Html$input,
-							_List_fromArray(
-								[
-									$elm$html$Html$Attributes$id(
-									$elm$core$String$toLower(name)),
-									$elm$html$Html$Attributes$class('hidden inline'),
-									$elm$html$Html$Attributes$type_('submit')
-								]),
-							_List_Nil)
-						]))
-				]));
-	});
-var $elm$html$Html$Attributes$src = function (url) {
-	return A2(
-		$elm$html$Html$Attributes$stringProperty,
-		'src',
-		_VirtualDom_noJavaScriptOrHtmlUri(url));
-};
-var $j_panasiuk$elm_ionicons$Ionicon$Social$twitter = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M492,109.5c-17.4,7.7-36,12.9-55.6,15.3c20-12,35.4-31,42.6-53.6c-18.7,11.1-39.4,19.2-61.5,23.5C399.8,75.8,374.6,64,346.8,64c-53.5,0-96.8,43.4-96.8,96.9c0,7.6,0.8,15,2.5,22.1c-80.5-4-151.9-42.6-199.6-101.3c-8.3,14.3-13.1,31-13.1,48.7c0,33.6,17.2,63.3,43.2,80.7C67,210.7,52,206.3,39,199c0,0.4,0,0.8,0,1.2c0,47,33.4,86.1,77.7,95c-8.1,2.2-16.7,3.4-25.5,3.4c-6.2,0-12.3-0.6-18.2-1.8c12.3,38.5,48.1,66.5,90.5,67.3c-33.1,26-74.9,41.5-120.3,41.5c-7.8,0-15.5-0.5-23.1-1.4C62.8,432,113.7,448,168.3,448C346.6,448,444,300.3,444,172.2c0-4.2-0.1-8.4-0.3-12.5C462.6,146,479,129,492,109.5z');
-var $elm$svg$Svg$g = $elm$svg$Svg$trustedNode('g');
-var $j_panasiuk$elm_ionicons$Ionicon$Internal$ps = F3(
-	function (ds, size, color) {
-		return A2(
-			$j_panasiuk$elm_ionicons$Ionicon$Internal$svg,
-			size,
-			_List_fromArray(
-				[
-					A2(
-					$elm$svg$Svg$g,
-					_List_Nil,
-					A2(
-						$elm$core$List$map,
-						function (d) {
-							return A2(
-								$elm$svg$Svg$path,
-								_List_fromArray(
-									[
-										$elm$svg$Svg$Attributes$d(d),
-										$elm$svg$Svg$Attributes$fill(
-										$j_panasiuk$elm_ionicons$Ionicon$Internal$fill(color))
-									]),
-								_List_Nil);
-						},
-						ds))
-				]));
-	});
-var $j_panasiuk$elm_ionicons$Ionicon$Ios$world = $j_panasiuk$elm_ionicons$Ionicon$Internal$ps(
-	_List_fromArray(
-		['M256,48c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.2,0-0.2,0C140.8,48.3,48,141.3,48,256c0,114.7,92.8,207.7,207.5,208 c0.1,0,0.2,0,0.2,0c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.2,0c114.9,0,208-93.1,208-208C464,141.1,370.9,48,256,48z M256,447.4 c-0.1,0-0.1,0-0.2,0c0,0,0,0-0.1,0c-0.1,0-0.2,0-0.2,0C150.1,447.1,64.6,361.5,64.6,256c0-105.5,85.4-191.1,190.9-191.3 c0.1,0,0.1,0,0.2,0c0,0,0.1,0,0.1,0c0.1,0,0.1,0,0.2,0c105.7,0,191.4,85.7,191.4,191.4C447.4,361.7,361.7,447.4,256,447.4z', 'M322.3,171.8c-18.7,4.5-38,7.2-57.9,7.8v68.1H332C331.4,219.6,327.9,194.1,322.3,171.8z', 'M264.3,82.5v81.9c18.5-0.6,36.5-3,53.8-7.2C305,115.8,284.6,88.6,264.3,82.5z', 'M193.4,157.1c17.5,4.2,35.6,6.7,54.2,7.3V82.3C227.3,88.2,206.6,115.4,193.4,157.1z', 'M380.6,133.4c-22.6-23-51.5-39.8-83.9-47.5c14.8,15.3,27.2,38.7,36.1,67.3C349.5,148.1,365.5,141.5,380.6,133.4z', 'M347.3,247.7h83.3c-1.8-38.8-16.3-74.4-39.5-102.6c-17.1,9.4-35.2,17.1-54.1,22.8C343.1,191.9,346.7,219,347.3,247.7z', 'M179.5,247.7h68.2v-68.1c-20.1-0.6-39.6-3.3-58.4-7.9C183.6,194,180.1,219.6,179.5,247.7z', 'M332,264.3h-67.7v68c19.9,0.6,39.3,3.2,58,7.8C327.9,317.9,331.4,292.3,332,264.3z', 'M189.3,340.2c18.8-4.6,38.3-7.3,58.4-7.9v-68h-68.2C180.1,292.4,183.6,318,189.3,340.2z', 'M247.7,429.6v-82.1c-18.6,0.6-36.8,3.1-54.3,7.3C206.6,396.5,227.3,423.8,247.7,429.6z', 'M296.7,426.1c32.4-7.8,61.3-24.5,84-47.6c-15.1-8.1-31.1-14.7-47.8-19.8C324,387.4,311.5,410.7,296.7,426.1z', 'M214.7,86.1c-32.1,7.8-60.8,24.5-83.3,47.4c15,8,30.8,14.6,47.3,19.6C187.6,124.6,200,101.4,214.7,86.1z', 'M337,344.1c19,5.7,37.1,13.4,54.2,22.8c23.2-28.2,37.7-63.8,39.5-102.6h-83.3C346.7,293,343.1,320,337,344.1z', 'M264.3,347.5v82c20.3-6.1,40.7-33.3,53.8-74.8C300.8,350.5,282.8,348.1,264.3,347.5z', 'M174.6,167.8c-18.8-5.7-36.8-13.3-53.7-22.7c-23.2,28.2-37.7,63.8-39.5,102.6h82.9C164.8,218.9,168.5,191.8,174.6,167.8z', 'M164.2,264.3H81.3c1.8,38.8,16.3,74.4,39.5,102.6c16.9-9.3,34.9-17,53.7-22.7C168.5,320.2,164.8,293.1,164.2,264.3z', 'M131.3,378.5c22.5,22.9,51.2,39.6,83.4,47.4c-14.7-15.3-27.1-38.6-36-67.1C162.2,363.9,146.3,370.5,131.3,378.5z']));
 var $author$project$Main$renderBody = function (model) {
 	var _v0 = model.page;
 	switch (_v0.$) {
@@ -6079,147 +6366,7 @@ var $author$project$Main$renderBody = function (model) {
 					[
 						$elm$html$Html$Attributes$id('About')
 					]),
-				_List_fromArray(
-					[
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('avatar')
-							]),
-						_List_fromArray(
-							[
-								A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, 256, $author$project$Helpers$white)
-							])),
-						A2(
-						$elm$html$Html$h2,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('about full-name')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Max Andrew Bach Bussiere')
-							])),
-						A2(
-						$elm$html$Html$h5,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('about')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Milwaukee 一 WI 一 U.S.A.')
-							])),
-						A2(
-						$elm$html$Html$img,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('about email'),
-								$elm$html$Html$Attributes$src('email.png')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('email image')
-							])),
-						A2(
-						$elm$html$Html$h3,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('about')
-							]),
-						_List_fromArray(
-							[
-								$elm$html$Html$text('Social:')
-							])),
-						A2(
-						$elm$html$Html$p,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('about')
-							]),
-						_List_fromArray(
-							[
-								A3($author$project$Main$socialLink, 'GitHub', 'https://github.com/3digitdev/', $j_panasiuk$elm_ionicons$Ionicon$Social$github),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('inline spacer')
-									]),
-								_List_Nil),
-								A3($author$project$Main$socialLink, 'Twitter', 'https://www.twitter.com/', $j_panasiuk$elm_ionicons$Ionicon$Social$twitter),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('inline spacer')
-									]),
-								_List_Nil),
-								A3($author$project$Main$socialLink, 'Facebook', 'https://www.facebook.com/', $j_panasiuk$elm_ionicons$Ionicon$Social$facebook),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('inline spacer')
-									]),
-								_List_Nil),
-								A3($author$project$Main$socialLink, 'LinkedIn', 'https://www.linkedin.com/in/maxbuss', $j_panasiuk$elm_ionicons$Ionicon$Social$linkedin),
-								A2(
-								$elm$html$Html$div,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('inline spacer')
-									]),
-								_List_Nil),
-								A3($author$project$Main$socialLink, 'Website', 'https://me.3digit.dev/', $j_panasiuk$elm_ionicons$Ionicon$Ios$world)
-							])),
-						A2($elm$html$Html$hr, _List_Nil, _List_Nil),
-						A2(
-						$elm$html$Html$div,
-						_List_fromArray(
-							[
-								$elm$html$Html$Attributes$class('bio')
-							]),
-						_List_fromArray(
-							[
-								A2(
-								$elm$html$Html$h3,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('inline')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Bio: ')
-									])),
-								A2(
-								$elm$html$Html$p,
-								_List_fromArray(
-									[
-										$elm$html$Html$Attributes$class('inline')
-									]),
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-									])),
-								A2($elm$html$Html$p, _List_Nil, _List_Nil),
-								A2(
-								$elm$html$Html$p,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-									])),
-								A2(
-								$elm$html$Html$p,
-								_List_Nil,
-								_List_fromArray(
-									[
-										$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-									]))
-							]))
-					]));
+				$author$project$About$renderBio);
 		case 'Work':
 			return A2(
 				$elm$html$Html$div,
@@ -6355,10 +6502,42 @@ var $author$project$Main$renderBody = function (model) {
 					[
 						$elm$html$Html$Attributes$id('Portfolio')
 					]),
-				_List_fromArray(
-					[
-						$elm$html$Html$text('Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
-					]));
+				A2(
+					$elm$core$List$map,
+					$author$project$Portfolio$renderPortfolioItem,
+					_List_fromArray(
+						[
+							A2(
+							$author$project$Portfolio$PortfolioItem,
+							'Verbly',
+							_List_fromArray(
+								[
+									A2($author$project$Portfolio$LinkCard, 'https://verbly.3digit.dev/', 'Verbly'),
+									A2(
+									$author$project$Portfolio$TextCard,
+									'Description',
+									_List_fromArray(
+										[
+											$author$project$Helpers$TextItem('Verb conjugation practice'),
+											$author$project$Helpers$TextItem('Currently supports only Italian'),
+											$author$project$Helpers$TextItem('Has timed mini-game for practice'),
+											$author$project$Helpers$TextItem('Has fuzzy-search and reverse search of 500+ verbs')
+										])),
+									$author$project$Portfolio$ImageCard('verbly.png'),
+									A2(
+									$author$project$Portfolio$TextCard,
+									'Tech Stack',
+									_List_fromArray(
+										[
+											$author$project$Helpers$TextItem('Backend is Nim exposing REST API'),
+											A2($author$project$Helpers$LinkItem, 'http://nim-lang.org/', 'Nim Language'),
+											$author$project$Helpers$TextItem('Database is SQLite'),
+											$author$project$Helpers$TextItem('Frontend is in Elm with Materialize CSS'),
+											A2($author$project$Helpers$LinkItem, 'https://elm-lang.org/', 'Elm Language'),
+											A2($author$project$Helpers$LinkItem, 'https://materializecss.com/', 'Materialize CSS')
+										]))
+								]))
+						])));
 	}
 };
 var $author$project$Main$NavClicked = function (a) {
@@ -6581,11 +6760,12 @@ var $author$project$Main$view = function (model) {
 											]))
 									]))
 							])),
+						$author$project$Main$renderNavBar(model),
 						A2(
 						$elm$html$Html$div,
 						_List_fromArray(
 							[
-								$elm$html$Html$Attributes$class('row')
+								$elm$html$Html$Attributes$class('row content')
 							]),
 						_List_fromArray(
 							[
@@ -6599,7 +6779,13 @@ var $author$project$Main$view = function (model) {
 									[
 										$author$project$Main$renderBody(model)
 									])),
-								$author$project$Main$renderNavBar(model)
+								A2(
+								$elm$html$Html$div,
+								_List_fromArray(
+									[
+										$elm$html$Html$Attributes$class('three columns')
+									]),
+								_List_Nil)
 							]))
 					]))
 			]),

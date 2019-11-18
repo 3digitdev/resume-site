@@ -37,7 +37,7 @@ toStars rating =
 
 renderSkill : Skill -> Html msg
 renderSkill skill =
-    div [ class "skill-card full-shadow" ]
+    div [ class "skill-card" ]
         [ h4 [ class "center-text" ] [ text skill.name ]
         , h5 [ class "center-text" ] (skill.rating |> toStars)
         , p [] [ text skill.blurb ]
