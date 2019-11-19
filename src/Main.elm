@@ -10,6 +10,7 @@ import Ionicon.Ios as IonIos
 import Ionicon.Social as IonSoc
 import List.Extra exposing (greedyGroupsOf)
 import Resume exposing (..)
+import ResumePage.Helpers exposing (..)
 import Url
 
 
@@ -36,7 +37,7 @@ main =
 type alias Model =
     { key : Nav.Key
     , url : Url.Url
-    , page : Page
+    , page : SelectedPage
     , title : String
     }
 
@@ -55,7 +56,7 @@ initModel url key =
     }
 
 
-pageTitle : Page -> String
+pageTitle : SelectedPage -> String
 pageTitle page =
     "Max Bussiere | " ++ pageString page
 
@@ -67,7 +68,7 @@ pageTitle page =
 type Msg
     = LinkClicked Browser.UrlRequest
     | UrlChanged Url.Url
-    | NavClicked Page
+    | NavClicked SelectedPage
 
 
 update : Msg -> Model -> ( Model, Cmd Msg )
@@ -263,7 +264,7 @@ renderNavBar model =
         ]
 
 
-navLink : Model -> Page -> Html Msg
+navLink : Model -> SelectedPage -> Html Msg
 navLink model page =
     let
         navClass =

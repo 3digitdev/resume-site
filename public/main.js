@@ -5105,8 +5105,8 @@ var $elm$core$Task$perform = F2(
 				A2($elm$core$Task$map, toMessage, task)));
 	});
 var $elm$browser$Browser$application = _Browser_application;
-var $author$project$Resume$About = {$: 'About'};
-var $author$project$Resume$pageString = function (page) {
+var $author$project$ResumePage$Helpers$About = {$: 'About'};
+var $author$project$ResumePage$Helpers$pageString = function (page) {
 	switch (page.$) {
 		case 'About':
 			return 'About';
@@ -5121,14 +5121,14 @@ var $author$project$Resume$pageString = function (page) {
 	}
 };
 var $author$project$Main$pageTitle = function (page) {
-	return 'Max Bussiere | ' + $author$project$Resume$pageString(page);
+	return 'Max Bussiere | ' + $author$project$ResumePage$Helpers$pageString(page);
 };
 var $author$project$Main$initModel = F2(
 	function (url, key) {
 		return {
 			key: key,
-			page: $author$project$Resume$About,
-			title: $author$project$Main$pageTitle($author$project$Resume$About),
+			page: $author$project$ResumePage$Helpers$About,
+			title: $author$project$Main$pageTitle($author$project$ResumePage$Helpers$About),
 			url: url
 		};
 	});
@@ -5191,10 +5191,10 @@ var $elm$url$Url$toString = function (url) {
 					_Utils_ap(http, url.host)),
 				url.path)));
 };
-var $author$project$Resume$Education = {$: 'Education'};
-var $author$project$Resume$Portfolio = {$: 'Portfolio'};
-var $author$project$Resume$Skills = {$: 'Skills'};
-var $author$project$Resume$Work = {$: 'Work'};
+var $author$project$ResumePage$Helpers$Education = {$: 'Education'};
+var $author$project$ResumePage$Helpers$Portfolio = {$: 'Portfolio'};
+var $author$project$ResumePage$Helpers$Skills = {$: 'Skills'};
+var $author$project$ResumePage$Helpers$Work = {$: 'Work'};
 var $elm_community$list_extra$List$Extra$last = function (items) {
 	last:
 	while (true) {
@@ -5213,24 +5213,24 @@ var $elm_community$list_extra$List$Extra$last = function (items) {
 		}
 	}
 };
-var $author$project$Resume$urlToPage = function (url) {
+var $author$project$ResumePage$Helpers$urlToPage = function (url) {
 	var _v0 = $elm_community$list_extra$List$Extra$last(
 		A2($elm$core$String$split, '/', url));
 	if (_v0.$ === 'Nothing') {
-		return $author$project$Resume$About;
+		return $author$project$ResumePage$Helpers$About;
 	} else {
 		var urlStr = _v0.a;
 		switch (urlStr) {
 			case 'work':
-				return $author$project$Resume$Work;
+				return $author$project$ResumePage$Helpers$Work;
 			case 'education':
-				return $author$project$Resume$Education;
+				return $author$project$ResumePage$Helpers$Education;
 			case 'skills':
-				return $author$project$Resume$Skills;
+				return $author$project$ResumePage$Helpers$Skills;
 			case 'portfolio':
-				return $author$project$Resume$Portfolio;
+				return $author$project$ResumePage$Helpers$Portfolio;
 			default:
-				return $author$project$Resume$About;
+				return $author$project$ResumePage$Helpers$About;
 		}
 	}
 };
@@ -5255,7 +5255,7 @@ var $author$project$Main$update = F2(
 				}
 			case 'UrlChanged':
 				var url = msg.a;
-				var page = $author$project$Resume$urlToPage(url.path);
+				var page = $author$project$ResumePage$Helpers$urlToPage(url.path);
 				return _Utils_Tuple2(
 					_Utils_update(
 						model,
@@ -5310,7 +5310,7 @@ var $author$project$Resume$LinkCard = F2(
 	function (a, b) {
 		return {$: 'LinkCard', a: a, b: b};
 	});
-var $author$project$Resume$LinkItem = F2(
+var $author$project$ResumePage$Helpers$LinkItem = F2(
 	function (a, b) {
 		return {$: 'LinkItem', a: a, b: b};
 	});
@@ -5329,7 +5329,7 @@ var $author$project$Resume$TextCard = F2(
 	function (a, b) {
 		return {$: 'TextCard', a: a, b: b};
 	});
-var $author$project$Resume$TextItem = function (a) {
+var $author$project$ResumePage$Helpers$TextItem = function (a) {
 	return {$: 'TextItem', a: a};
 };
 var $elm$html$Html$Attributes$id = $elm$html$Html$Attributes$stringProperty('id');
@@ -5422,7 +5422,6 @@ var $j_panasiuk$elm_ionicons$Ionicon$Internal$p = F3(
 					_List_Nil)
 				]));
 	});
-var $j_panasiuk$elm_ionicons$Ionicon$Ios$contact = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M256,48C141.1,48,48,141.1,48,256c0,114.9,93.1,208,208,208c114.9,0,208-93.1,208-208C464,141.1,370.9,48,256,48zM256,446.7c-58.6,0-111.1-26.6-146.1-68.3c17.8-7.7,62.2-23.7,90.3-31.9c2.2-0.7,2.6-0.8,2.6-10.7c0-10.6-1.2-18.1-3.8-23.6c-3.5-7.5-7.7-20.2-9.2-31.6c-4.2-4.9-9.9-14.5-13.6-32.9c-3.2-16.2-1.7-22.1,0.4-27.6c0.2-0.6,0.5-1.2,0.6-1.8c0.8-3.7-0.3-23.5-3.1-38.8c-1.9-10.5,0.5-32.8,15-51.3c9.1-11.7,26.6-26,58-28l17.5,0c31.9,2,49.4,16.3,58.5,28c14.5,18.5,16.9,40.8,14.9,51.3c-2.8,15.3-3.9,35-3.1,38.8c0.1,0.6,0.4,1.2,0.6,1.7c2.1,5.5,3.7,11.4,0.4,27.6c-3.7,18.4-9.4,28-13.6,32.9c-1.5,11.4-5.7,24-9.2,31.6c-3.3,6.9-6.6,15.1-6.6,23.3c0,9.9,0.4,10,2.7,10.7c26.7,7.9,72.7,23.8,93,32.1C367.2,420,314.7,446.7,256,446.7z');
 var $j_panasiuk$elm_ionicons$Ionicon$Social$facebook = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M288,192v-38.1c0-17.2,3.8-25.9,30.5-25.9H352V64h-55.9c-68.5,0-91.1,31.4-91.1,85.3V192h-45v64h45v192h83V256h56.4l7.6-64H288z');
 var $j_panasiuk$elm_ionicons$Ionicon$Social$github = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M256,32C132.3,32,32,134.9,32,261.7c0,101.5,64.2,187.5,153.2,217.9c1.4,0.3,2.6,0.4,3.8,0.4c8.3,0,11.5-6.1,11.5-11.4c0-5.5-0.2-19.9-0.3-39.1c-8.4,1.9-15.9,2.7-22.6,2.7c-43.1,0-52.9-33.5-52.9-33.5c-10.2-26.5-24.9-33.6-24.9-33.6c-19.5-13.7-0.1-14.1,1.4-14.1c0.1,0,0.1,0,0.1,0c22.5,2,34.3,23.8,34.3,23.8c11.2,19.6,26.2,25.1,39.6,25.1c10.5,0,20-3.4,25.6-6c2-14.8,7.8-24.9,14.2-30.7c-49.7-5.8-102-25.5-102-113.5c0-25.1,8.7-45.6,23-61.6c-2.3-5.8-10-29.2,2.2-60.8c0,0,1.6-0.5,5-0.5c8.1,0,26.4,3.1,56.6,24.1c17.9-5.1,37-7.6,56.1-7.7c19,0.1,38.2,2.6,56.1,7.7c30.2-21,48.5-24.1,56.6-24.1c3.4,0,5,0.5,5,0.5c12.2,31.6,4.5,55,2.2,60.8c14.3,16.1,23,36.6,23,61.6c0,88.2-52.4,107.6-102.3,113.3c8,7.1,15.2,21.1,15.2,42.5c0,30.7-0.3,55.5-0.3,63c0,5.4,3.1,11.5,11.4,11.5c1.2,0,2.6-0.1,4-0.4C415.9,449.2,480,363.1,480,261.7C480,134.9,379.7,32,256,32z');
 var $elm$html$Html$h2 = _VirtualDom_node('h2');
@@ -5454,11 +5453,11 @@ var $elm$html$Html$text = $elm$virtual_dom$VirtualDom$text;
 var $elm$html$Html$Attributes$title = $elm$html$Html$Attributes$stringProperty('title');
 var $elm$core$String$toLower = _String_toLower;
 var $elm$html$Html$Attributes$type_ = $elm$html$Html$Attributes$stringProperty('type');
-var $author$project$Resume$RGBA = F4(
+var $author$project$ResumePage$Helpers$RGBA = F4(
 	function (red, green, blue, alpha) {
 		return {alpha: alpha, blue: blue, green: green, red: red};
 	});
-var $author$project$Resume$white = A4($author$project$Resume$RGBA, 1, 1, 1, 1);
+var $author$project$ResumePage$Helpers$white = A4($author$project$ResumePage$Helpers$RGBA, 1, 1, 1, 1);
 var $author$project$Resume$socialLink = F3(
 	function (name, url, icon) {
 		return A2(
@@ -5490,7 +5489,7 @@ var $author$project$Resume$socialLink = F3(
 								]),
 							_List_fromArray(
 								[
-									A2(icon, 32, $author$project$Resume$white),
+									A2(icon, 32, $author$project$ResumePage$Helpers$white),
 									$elm$html$Html$text(name)
 								])),
 							A2(
@@ -5553,7 +5552,13 @@ var $author$project$Resume$renderBio = _List_fromArray(
 			]),
 		_List_fromArray(
 			[
-				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$contact, 256, $author$project$Resume$white)
+				A2(
+				$elm$html$Html$img,
+				_List_fromArray(
+					[
+						$elm$html$Html$Attributes$src('square.png')
+					]),
+				_List_Nil)
 			])),
 		A2(
 		$elm$html$Html$h2,
@@ -5684,13 +5689,13 @@ var $author$project$Resume$renderBio = _List_fromArray(
 					]))
 			]))
 	]);
-var $author$project$Resume$formatStartEndDate = F2(
+var $author$project$ResumePage$Helpers$formatStartEndDate = F2(
 	function (start, end) {
 		return ((end === '') || (end === 'Present')) ? (start + (' ⟹ ' + 'Present')) : (start + (' ⟹ ' + end));
 	});
 var $elm$html$Html$h6 = _VirtualDom_node('h6');
 var $elm$html$Html$li = _VirtualDom_node('li');
-var $author$project$Resume$renderInfoList = function (infoList) {
+var $author$project$ResumePage$Helpers$renderInfoList = function (infoList) {
 	return A2(
 		$elm$core$List$map,
 		function (item) {
@@ -5861,7 +5866,7 @@ var $author$project$Resume$educationInfo = function (edType) {
 								[
 									$elm$html$Html$Attributes$class('ed-resp')
 								]),
-							$author$project$Resume$renderInfoList(ed.info))
+							$author$project$ResumePage$Helpers$renderInfoList(ed.info))
 						]))
 				]);
 		case 'SelfEducated':
@@ -5907,7 +5912,7 @@ var $author$project$Resume$educationInfo = function (edType) {
 								[
 									$elm$html$Html$Attributes$class('ed-resp')
 								]),
-							$author$project$Resume$renderInfoList(ed))
+							$author$project$ResumePage$Helpers$renderInfoList(ed))
 						]))
 				]);
 		default:
@@ -5981,7 +5986,7 @@ var $author$project$Resume$educationInfo = function (edType) {
 									_List_fromArray(
 										[
 											$elm$html$Html$text(
-											A2($author$project$Resume$formatStartEndDate, ed.startDate, ed.endDate))
+											A2($author$project$ResumePage$Helpers$formatStartEndDate, ed.startDate, ed.endDate))
 										]))
 								]))
 						])),
@@ -5999,7 +6004,7 @@ var $author$project$Resume$educationInfo = function (edType) {
 								[
 									$elm$html$Html$Attributes$class('ed-resp')
 								]),
-							$author$project$Resume$renderInfoList(ed.info))
+							$author$project$ResumePage$Helpers$renderInfoList(ed.info))
 						]))
 				]);
 	}
@@ -6080,7 +6085,7 @@ var $author$project$Resume$renderJob = function (job) {
 								_List_fromArray(
 									[
 										$elm$html$Html$text(
-										A2($author$project$Resume$formatStartEndDate, job.startDate, job.endDate))
+										A2($author$project$ResumePage$Helpers$formatStartEndDate, job.startDate, job.endDate))
 									]))
 							])),
 						A2(
@@ -6124,7 +6129,7 @@ var $author$project$Resume$renderJob = function (job) {
 							[
 								$elm$html$Html$Attributes$class('job-resp')
 							]),
-						$author$project$Resume$renderInfoList(job.info))
+						$author$project$ResumePage$Helpers$renderInfoList(job.info))
 					]))
 			]));
 };
@@ -6166,7 +6171,7 @@ var $author$project$Resume$renderCardGroup = function (cardGroup) {
 										[
 											$elm$html$Html$Attributes$class('folio-card')
 										]),
-									$author$project$Resume$renderInfoList(items))
+									$author$project$ResumePage$Helpers$renderInfoList(items))
 								]));
 					case 'ImageCard':
 						var imgPath = card.a;
@@ -6210,7 +6215,7 @@ var $author$project$Resume$renderCardGroup = function (cardGroup) {
 											_List_Nil,
 											_List_fromArray(
 												[
-													A2($j_panasiuk$elm_ionicons$Ionicon$link, 40, $author$project$Resume$white),
+													A2($j_panasiuk$elm_ionicons$Ionicon$link, 40, $author$project$ResumePage$Helpers$white),
 													A2(
 													$elm$html$Html$h3,
 													_List_Nil,
@@ -6310,15 +6315,15 @@ var $author$project$Resume$toStars = function (rating) {
 				A2(
 				$elm$core$List$repeat,
 				stars,
-				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$star, 24, $author$project$Resume$white)),
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$star, 24, $author$project$ResumePage$Helpers$white)),
 				A2(
 				$elm$core$List$repeat,
 				halfStar,
-				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$starHalf, 24, $author$project$Resume$white)),
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$starHalf, 24, $author$project$ResumePage$Helpers$white)),
 				A2(
 				$elm$core$List$repeat,
 				emptyStars,
-				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$starOutline, 24, $author$project$Resume$white))
+				A2($j_panasiuk$elm_ionicons$Ionicon$Ios$starOutline, 24, $author$project$ResumePage$Helpers$white))
 			]));
 };
 var $author$project$Resume$renderSkill = function (skill) {
@@ -6385,12 +6390,12 @@ var $author$project$Main$renderBody = function (model) {
 							'Senior Test Engineer',
 							_List_fromArray(
 								[
-									$author$project$Resume$TextItem('Lead tester on a brand new rewrite of front-end for a large enterprise application'),
-									$author$project$Resume$TextItem('Developed automation strategy to make end-to-end tests run 3x faster with no loss of reliability'),
-									$author$project$Resume$TextItem('Lead training classes for helping test engineers learn API testing'),
-									$author$project$Resume$TextItem('Scripted automation of hundreds of tests covering a large application'),
-									$author$project$Resume$TextItem('Developed process, documentation, and organization of actual codebase and test codebase'),
-									$author$project$Resume$TextItem('Helped to greatly improve reliability, cleanliness, and organization of entire testing repo')
+									$author$project$ResumePage$Helpers$TextItem('Lead tester on a brand new rewrite of front-end for a large enterprise application'),
+									$author$project$ResumePage$Helpers$TextItem('Developed automation strategy to make end-to-end tests run 3x faster with no loss of reliability'),
+									$author$project$ResumePage$Helpers$TextItem('Lead training classes for helping test engineers learn API testing'),
+									$author$project$ResumePage$Helpers$TextItem('Scripted automation of hundreds of tests covering a large application'),
+									$author$project$ResumePage$Helpers$TextItem('Developed process, documentation, and organization of actual codebase and test codebase'),
+									$author$project$ResumePage$Helpers$TextItem('Helped to greatly improve reliability, cleanliness, and organization of entire testing repo')
 								]))),
 						$author$project$Resume$renderJob(
 						A5(
@@ -6401,10 +6406,10 @@ var $author$project$Main$renderBody = function (model) {
 							'Software Engineer',
 							_List_fromArray(
 								[
-									$author$project$Resume$TextItem('Helped to create and bring to production the SEL-5056 Software Defined Networking tool'),
-									A2($author$project$Resume$LinkItem, 'https://cdn.selinc.com/assets/Literature/Product%20Literature/Data%20Sheets/5056_DS_20190614.pdf?v=20190703-203312', 'SEL-5056 SDN'),
-									$author$project$Resume$TextItem('Developed automation testing suite using Python and Mininet to help create a VM \'farm\' to build a fake network for testing'),
-									$author$project$Resume$TextItem('Helped to create a heavily-OOP C# application to customer specifications')
+									$author$project$ResumePage$Helpers$TextItem('Helped to create and bring to production the SEL-5056 Software Defined Networking tool'),
+									A2($author$project$ResumePage$Helpers$LinkItem, 'https://cdn.selinc.com/assets/Literature/Product%20Literature/Data%20Sheets/5056_DS_20190614.pdf?v=20190703-203312', 'SEL-5056 SDN'),
+									$author$project$ResumePage$Helpers$TextItem('Developed automation testing suite using Python and Mininet to help create a VM \'farm\' to build a fake network for testing'),
+									$author$project$ResumePage$Helpers$TextItem('Helped to create a heavily-OOP C# application to customer specifications')
 								]))),
 						$author$project$Resume$renderJob(
 						A5(
@@ -6415,9 +6420,9 @@ var $author$project$Main$renderBody = function (model) {
 							'Professional Services Consultant',
 							_List_fromArray(
 								[
-									$author$project$Resume$TextItem('Became certified with \"EnCase\", a cybersecurity forensics software suite'),
-									$author$project$Resume$TextItem('Working with outside companies to install, troubleshoot, and instruct on EnCase'),
-									$author$project$Resume$TextItem('Using Guidance\'s proprietary language as well as C# to create connections between outside software and EnCase.')
+									$author$project$ResumePage$Helpers$TextItem('Became certified with \"EnCase\", a cybersecurity forensics software suite'),
+									$author$project$ResumePage$Helpers$TextItem('Working with outside companies to install, troubleshoot, and instruct on EnCase'),
+									$author$project$ResumePage$Helpers$TextItem('Using Guidance\'s proprietary language as well as C# to create connections between outside software and EnCase.')
 								])))
 					]));
 		case 'Education':
@@ -6439,12 +6444,12 @@ var $author$project$Main$renderBody = function (model) {
 								'3.2',
 								_List_fromArray(
 									[
-										$author$project$Resume$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
-										$author$project$Resume$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
-										$author$project$Resume$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
-										$author$project$Resume$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
-										$author$project$Resume$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
-										$author$project$Resume$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+										$author$project$ResumePage$Helpers$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
+										$author$project$ResumePage$Helpers$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+										$author$project$ResumePage$Helpers$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
+										$author$project$ResumePage$Helpers$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
+										$author$project$ResumePage$Helpers$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+										$author$project$ResumePage$Helpers$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
 									])))),
 						$author$project$Resume$renderEducation(
 						$author$project$Resume$Camp(
@@ -6456,23 +6461,23 @@ var $author$project$Main$renderBody = function (model) {
 								'March 2016',
 								_List_fromArray(
 									[
-										$author$project$Resume$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
-										$author$project$Resume$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
-										$author$project$Resume$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
-										$author$project$Resume$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
-										$author$project$Resume$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
-										$author$project$Resume$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+										$author$project$ResumePage$Helpers$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
+										$author$project$ResumePage$Helpers$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+										$author$project$ResumePage$Helpers$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
+										$author$project$ResumePage$Helpers$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
+										$author$project$ResumePage$Helpers$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+										$author$project$ResumePage$Helpers$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
 									])))),
 						$author$project$Resume$renderEducation(
 						$author$project$Resume$SelfEducated(
 							_List_fromArray(
 								[
-									$author$project$Resume$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
-									$author$project$Resume$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
-									$author$project$Resume$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
-									$author$project$Resume$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
-									$author$project$Resume$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
-									$author$project$Resume$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
+									$author$project$ResumePage$Helpers$TextItem('Lorem ipsum dolor sit amet, consectetur adipisicing elit'),
+									$author$project$ResumePage$Helpers$TextItem('sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'),
+									$author$project$ResumePage$Helpers$TextItem('Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi'),
+									$author$project$ResumePage$Helpers$TextItem('ut aliquip ex ea commodo consequat. Duis aute irure dolor in'),
+									$author$project$ResumePage$Helpers$TextItem('reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+									$author$project$ResumePage$Helpers$TextItem('Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.')
 								])))
 					]));
 		case 'Skills':
@@ -6518,10 +6523,10 @@ var $author$project$Main$renderBody = function (model) {
 									'Description',
 									_List_fromArray(
 										[
-											$author$project$Resume$TextItem('Verb conjugation practice'),
-											$author$project$Resume$TextItem('Currently supports only Italian'),
-											$author$project$Resume$TextItem('Has timed mini-game for practice'),
-											$author$project$Resume$TextItem('Has fuzzy-search and reverse search of 500+ verbs')
+											$author$project$ResumePage$Helpers$TextItem('Verb conjugation practice'),
+											$author$project$ResumePage$Helpers$TextItem('Currently supports only Italian'),
+											$author$project$ResumePage$Helpers$TextItem('Has timed mini-game for practice'),
+											$author$project$ResumePage$Helpers$TextItem('Has fuzzy-search and reverse search of 500+ verbs')
 										])),
 									$author$project$Resume$ImageCard('verbly.png'),
 									A2(
@@ -6529,12 +6534,12 @@ var $author$project$Main$renderBody = function (model) {
 									'Tech Stack',
 									_List_fromArray(
 										[
-											$author$project$Resume$TextItem('Backend is Nim exposing REST API'),
-											A2($author$project$Resume$LinkItem, 'http://nim-lang.org/', 'Nim Language'),
-											$author$project$Resume$TextItem('Database is SQLite'),
-											$author$project$Resume$TextItem('Frontend is in Elm with Materialize CSS'),
-											A2($author$project$Resume$LinkItem, 'https://elm-lang.org/', 'Elm Language'),
-											A2($author$project$Resume$LinkItem, 'https://materializecss.com/', 'Materialize CSS')
+											$author$project$ResumePage$Helpers$TextItem('Backend is Nim exposing REST API'),
+											A2($author$project$ResumePage$Helpers$LinkItem, 'http://nim-lang.org/', 'Nim Language'),
+											$author$project$ResumePage$Helpers$TextItem('Database is SQLite'),
+											$author$project$ResumePage$Helpers$TextItem('Frontend is in Elm with Materialize CSS'),
+											A2($author$project$ResumePage$Helpers$LinkItem, 'https://elm-lang.org/', 'Elm Language'),
+											A2($author$project$ResumePage$Helpers$LinkItem, 'https://materializecss.com/', 'Materialize CSS')
 										]))
 								]))
 						])));
@@ -6564,6 +6569,7 @@ var $j_panasiuk$elm_ionicons$Ionicon$briefcase = $j_panasiuk$elm_ionicons$Ionico
 	_List_fromArray(
 		['M272,272h-32v-8H32v176c0,4.4,3.3,8,7.8,8h432.5c4.4,0,7.7-3.6,7.7-8V264H272V272z', 'M472.2,144H352v-30.7C351,85.1,330.3,64,300.8,64h-89.6c-29.4,0-50.2,21.1-51.2,49.3V144H39.8c-4.4,0-7.8,3.6-7.8,8v96h208 v-8h32v8h208v-96C480,147.6,476.7,144,472.2,144z M320,116.2c0,0.3,0,0.6,0,1V144H192v-26.8c0-0.4,0-0.7,0-1c0-0.3,0-0.6,0-1 c0-9.7,8.6-19.2,18.8-19.2h90.4c10.1,0,18.8,9.4,18.8,19.2C320,115.6,320,115.9,320,116.2z']));
 var $j_panasiuk$elm_ionicons$Ionicon$coffee = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M383.1,257.4c0.6-5.4,0.9-10,0.9-13.8c0-19.6-3.3-19.7-16-19.7h-75.5c7.3-12,11.5-24.4,11.5-37c0-37.9-57.3-56.4-57.3-88c0-11.7,5.1-21.3,9.3-34.9c-26.5,7-47.4,33.5-47.4,61.6c0,48.3,56.3,48.7,56.3,84.8c0,4.5-1.4,8.5-2.1,13.5h-55.9c0.8-3,1.3-6.2,1.3-9.3c0-22.8-39.1-33.9-39.1-52.8c0-7,1-12.8,3.2-21c-12.9,5.1-28.3,20-28.3,36.8c0,26.7,31.9,29.3,36.8,46.3H80c-12.7,0-16,0.1-16,19.7c0,19.6,7.7,61.3,28.3,111c20.6,49.7,44.4,71.6,61.2,86.2l0.1-0.2c5.1,4.6,11.8,7.3,19.2,7.3h102.4c7.4,0,14.1-2.7,19.2-7.3l0.1,0.2c9-7.8,20-17.8,31.4-32.9c4.7,2,9.8,3.7,15.4,5c8.4,2,16.8,3,24.8,3c24,0,45.6-9.2,60.8-25.8c13.4-14.6,21.1-34.4,21.1-54.2C448,297,420,264.5,383.1,257.4zM366.1,384.2c-8.6,0-15.6-1.2-22.1-4.2c4-8,7.9-15.9,11.7-25.1c10.1-24.4,17.1-47,21.6-65.8c22,4.3,38.7,23.8,38.7,47.1C416,358.9,398.8,384.2,366.1,384.2z');
+var $j_panasiuk$elm_ionicons$Ionicon$Ios$contact = $j_panasiuk$elm_ionicons$Ionicon$Internal$p('M256,48C141.1,48,48,141.1,48,256c0,114.9,93.1,208,208,208c114.9,0,208-93.1,208-208C464,141.1,370.9,48,256,48zM256,446.7c-58.6,0-111.1-26.6-146.1-68.3c17.8-7.7,62.2-23.7,90.3-31.9c2.2-0.7,2.6-0.8,2.6-10.7c0-10.6-1.2-18.1-3.8-23.6c-3.5-7.5-7.7-20.2-9.2-31.6c-4.2-4.9-9.9-14.5-13.6-32.9c-3.2-16.2-1.7-22.1,0.4-27.6c0.2-0.6,0.5-1.2,0.6-1.8c0.8-3.7-0.3-23.5-3.1-38.8c-1.9-10.5,0.5-32.8,15-51.3c9.1-11.7,26.6-26,58-28l17.5,0c31.9,2,49.4,16.3,58.5,28c14.5,18.5,16.9,40.8,14.9,51.3c-2.8,15.3-3.9,35-3.1,38.8c0.1,0.6,0.4,1.2,0.6,1.7c2.1,5.5,3.7,11.4,0.4,27.6c-3.7,18.4-9.4,28-13.6,32.9c-1.5,11.4-5.7,24-9.2,31.6c-3.3,6.9-6.6,15.1-6.6,23.3c0,9.9,0.4,10,2.7,10.7c26.7,7.9,72.7,23.8,93,32.1C367.2,420,314.7,446.7,256,446.7z');
 var $j_panasiuk$elm_ionicons$Ionicon$Internal$g = F3(
 	function (elements, size, color) {
 		return A2(
@@ -6638,7 +6644,7 @@ var $j_panasiuk$elm_ionicons$Ionicon$university = $j_panasiuk$elm_ionicons$Ionic
 			$j_panasiuk$elm_ionicons$Ionicon$Internal$pg1('256,64 32,176.295 64,197.367 64,400 96,416 96,217.849 255.852,320 387.996,234.549 480,174.727'),
 			$j_panasiuk$elm_ionicons$Ionicon$Internal$p1('M390.13,256L256,343.768L120.531,256L112,337.529C128,349.984,224,416,256.002,448C288,416,384,350.031,400,337.561 L390.13,256z')
 		]));
-var $author$project$Resume$pageIcon = F2(
+var $author$project$ResumePage$Helpers$pageIcon = F2(
 	function (page, color) {
 		var size = 30;
 		switch (page.$) {
@@ -6654,7 +6660,7 @@ var $author$project$Resume$pageIcon = F2(
 				return A2($j_panasiuk$elm_ionicons$Ionicon$briefcase, size, color);
 		}
 	});
-var $author$project$Resume$pageLink = function (page) {
+var $author$project$ResumePage$Helpers$pageLink = function (page) {
 	switch (page.$) {
 		case 'About':
 			return 'about';
@@ -6677,7 +6683,7 @@ var $author$project$Main$navLink = F2(
 				[
 					$elm$html$Html$Attributes$class('nav-link'),
 					$elm$html$Html$Attributes$href(
-					$author$project$Resume$pageLink(page)),
+					$author$project$ResumePage$Helpers$pageLink(page)),
 					$elm$html$Html$Events$onClick(
 					$author$project$Main$NavClicked(page))
 				]),
@@ -6691,9 +6697,9 @@ var $author$project$Main$navLink = F2(
 						]),
 					_List_fromArray(
 						[
-							A2($author$project$Resume$pageIcon, page, $author$project$Resume$white),
+							A2($author$project$ResumePage$Helpers$pageIcon, page, $author$project$ResumePage$Helpers$white),
 							$elm$html$Html$text(
-							$author$project$Resume$pageString(page))
+							$author$project$ResumePage$Helpers$pageString(page))
 						]))
 				]));
 	});
@@ -6706,11 +6712,11 @@ var $author$project$Main$renderNavBar = function (model) {
 			]),
 		_List_fromArray(
 			[
-				A2($author$project$Main$navLink, model, $author$project$Resume$About),
-				A2($author$project$Main$navLink, model, $author$project$Resume$Work),
-				A2($author$project$Main$navLink, model, $author$project$Resume$Education),
-				A2($author$project$Main$navLink, model, $author$project$Resume$Skills),
-				A2($author$project$Main$navLink, model, $author$project$Resume$Portfolio)
+				A2($author$project$Main$navLink, model, $author$project$ResumePage$Helpers$About),
+				A2($author$project$Main$navLink, model, $author$project$ResumePage$Helpers$Work),
+				A2($author$project$Main$navLink, model, $author$project$ResumePage$Helpers$Education),
+				A2($author$project$Main$navLink, model, $author$project$ResumePage$Helpers$Skills),
+				A2($author$project$Main$navLink, model, $author$project$ResumePage$Helpers$Portfolio)
 			]));
 };
 var $author$project$Main$view = function (model) {
@@ -6755,7 +6761,7 @@ var $author$project$Main$view = function (model) {
 												_List_fromArray(
 													[
 														$elm$html$Html$text(
-														$author$project$Resume$pageString(model.page))
+														$author$project$ResumePage$Helpers$pageString(model.page))
 													]))
 											]))
 									]))

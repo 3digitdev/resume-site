@@ -2,15 +2,139 @@ module Resume exposing (..)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
+import Html.Events exposing (onClick)
 import Ionicon as Ion
 import Ionicon.Ios as IonIos
 import Ionicon.Social as IonSoc
 import List.Extra exposing (greedyGroupsOf, last)
+import Maybe.Extra exposing (unwrap)
+import ResumePage.About exposing (..)
+import ResumePage.Education exposing (..)
+import ResumePage.Helpers exposing (..)
+import ResumePage.Portfolio exposing (..)
+import ResumePage.Skills exposing (..)
+import ResumePage.WorkHistory exposing (..)
 
 
 
--- TODO:
 -- PUBLIC FUNCTIONS
+
+
+type alias Resume =
+    { nickname : Maybe String -- Short name to use for page title, etc
+    , aboutPage : AboutPage
+    , workHistoryPage : Maybe WorkHistoryPage
+    , educationPage : Maybe EducationPage
+    , skillsPage : Maybe SkillsPage
+    , portfolioPage : Maybe PortfolioPage
+    }
+
+
+defaultResume : Resume
+defaultResume =
+    { nickname = Just "Max"
+    , aboutPage = defaultAboutPage
+    , workHistoryPage = Just defaultWorkHistory
+    , educationPage = Just defaultEducation
+    , skillsPage = Just defaultSkillsPage
+    , portfolioPage = Just defaultPortfolio
+    }
+
+
+renderResume : SelectedPage -> Resume -> List (Html msg)
+renderResume curPage resume =
+    [ div
+        [ class "container" ]
+        [ div [ class "row" ]
+            [ div
+                [ class "nine columns center-text" ]
+                [ h1 [] [ span [ class "page-header" ] [ text (pageString curPage) ] ] ]
+            ]
+        , renderNavBar resume curPage
+        , div [ class "row content" ]
+            [ div
+                [ class "nine columns" ]
+                [ curPage |> renderSelectedPage resume ]
+            , div [ class "three columns" ] []
+            ]
+        ]
+    ]
+
+
+renderSelectedPage : Resume -> SelectedPage -> Html msg
+renderSelectedPage resume selectedPage =
+    case selectedPage of
+        About ->
+            resume.aboutPage |> renderAboutPage
+
+        Work ->
+            resume.workHistoryPage |> emptyDivOr renderWorkHistoryPage
+
+        Education ->
+            resume.educationPage |> emptyDivOr renderEducationPage
+
+        Skills ->
+            resume.skillsPage |> emptyDivOr renderSkillsPage
+
+        Portfolio ->
+            resume.portfolioPage |> emptyDivOr renderPortfolioPage
+
+
+renderNavBar : Resume -> SelectedPage -> Html msg
+renderNavBar resume curPage =
+    let
+        validPages =
+            List.concat
+                [ [ About ]
+                , resume.workHistoryPage |> unwrap [] (\_ -> List.singleton Work)
+                , resume.educationPage |> unwrap [] (\_ -> List.singleton Education)
+                , resume.skillsPage |> unwrap [] (\_ -> List.singleton Skills)
+                , resume.portfolioPage |> unwrap [] (\_ -> List.singleton Portfolio)
+                ]
+    in
+    div [ class "three columns nav-bar full-shadow" ]
+        (validPages |> List.map (navLink curPage))
+
+
+navLink : SelectedPage -> SelectedPage -> Html msg
+navLink curPage renderPage =
+    let
+        navClass =
+            if renderPage == curPage then
+                "nav current"
+
+            else
+                "nav"
+    in
+    a
+        [ class "nav-link"
+        , href (pageLink renderPage)
+
+        -- TODO:  NEED TO FIGURE OUT HOW TO PASS A `Msg` FROM THE USER'S Main.elm!!  `msg` as arg didn't work!
+        -- , onClick (NavClicked renderPage)
+        ]
+        [ h4
+            [ class navClass ]
+            [ pageIcon renderPage white, text (pageString renderPage) ]
+        ]
+
+
+{-| USING THE LIBRARY
+Resume Object
+need to define what pages you'll include
+how to include/exclude them that's easiest?
+
+    has one property for each page as a Maybe Page
+
+Page Objects
+list of the components in the page
+varies by page
+
+-}
+
+
+
+-- TODO:  EVERYTHING BELOW HERE SHOULD BE DELETED WHEN WE ARE FINISHED
 -- ABOUT PAGE
 
 
@@ -23,6 +147,7 @@ socialLink name url icon =
                 [ for (String.toLower name), class "social inline" ]
                 [ icon 32 white, text name ]
             , input
+                -- TODO: Make id include index of item somehow
                 [ id (String.toLower name), class "hidden inline", type_ "submit" ]
                 []
             ]
@@ -31,7 +156,7 @@ socialLink name url icon =
 
 renderBio : List (Html msg)
 renderBio =
-    [ div [ class "avatar" ] [ IonIos.contact 256 white ]
+    [ div [ class "avatar" ] [ img [ src "square.png" ] [] ] -- TODO:  this needs to be an image
     , h2 [ class "about full-name" ] [ text "Max Andrew Bach Bussiere" ]
     , h5 [ class "about" ] [ text "Milwaukee 一 WI 一 U.S.A." ]
     , img [ class "about email", src "email.png" ] [ text "email image" ]
@@ -232,153 +357,6 @@ renderPortfolioItem item =
 
 
 -- INTERNAL HELPER FUNCTIONS
-
-
-pageString : Page -> String
-pageString page =
-    case page of
-        About ->
-            "About"
-
-        Work ->
-            "Work History"
-
-        Education ->
-            "Education"
-
-        Skills ->
-            "Skills"
-
-        Portfolio ->
-            "Portfolio"
-
-
-pageLink : Page -> String
-pageLink page =
-    case page of
-        About ->
-            "about"
-
-        Work ->
-            "work"
-
-        Education ->
-            "education"
-
-        Skills ->
-            "skills"
-
-        Portfolio ->
-            "portfolio"
-
-
-anchorToPage : String -> Page
-anchorToPage anchor =
-    case anchor of
-        "Work" ->
-            Work
-
-        "Education" ->
-            Education
-
-        "Skills" ->
-            Skills
-
-        "Portfolio" ->
-            Portfolio
-
-        _ ->
-            About
-
-
-urlToPage : String -> Page
-urlToPage url =
-    case String.split "/" url |> last of
-        Nothing ->
-            About
-
-        Just urlStr ->
-            case urlStr of
-                "work" ->
-                    Work
-
-                "education" ->
-                    Education
-
-                "skills" ->
-                    Skills
-
-                "portfolio" ->
-                    Portfolio
-
-                _ ->
-                    About
-
-
-pageIcon : Page -> RGBA -> Html msg
-pageIcon page color =
-    let
-        size =
-            30
-    in
-    case page of
-        About ->
-            IonIos.contact size color
-
-        Work ->
-            Ion.coffee size color
-
-        Education ->
-            Ion.university size color
-
-        Skills ->
-            IonIos.lightbulb size color
-
-        Portfolio ->
-            Ion.briefcase size color
-
-
-renderInfoList : List InfoItem -> List (Html msg)
-renderInfoList infoList =
-    List.map
-        (\item ->
-            case item of
-                TextItem txt ->
-                    li [] [ text txt ]
-
-                LinkItem url txt ->
-                    li [] [ a [ href url ] [ text txt ] ]
-        )
-        infoList
-
-
-formatStartEndDate : String -> String -> String
-formatStartEndDate start end =
-    if end == "" || end == "Present" then
-        start ++ " ⟹ " ++ "Present"
-
-    else
-        start ++ " ⟹ " ++ end
-
-
-
--- COLORS
-
-
-type alias RGBA =
-    { red : Float
-    , green : Float
-    , blue : Float
-    , alpha : Float
-    }
-
-
-white : RGBA
-white =
-    RGBA 1 1 1 1
-
-
-
 -- TYPEDEFS
 
 
@@ -432,16 +410,3 @@ type PortfolioCard
     = TextCard String (List InfoItem) -- Pure text with title as <ul> with text or links
     | ImageCard String -- Just an image filling the card with capped width/height
     | LinkCard String String -- A card that has just a single link -- entire card is clickable
-
-
-type Page
-    = About
-    | Work
-    | Education
-    | Skills
-    | Portfolio
-
-
-type InfoItem
-    = LinkItem String String
-    | TextItem String

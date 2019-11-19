@@ -90,6 +90,7 @@ a.nav-link {
 /* ABOUT PAGE */
 .avatar {
     float: left;
+    margin-right: 2rem;
 }
 
 .about {
@@ -225,6 +226,7 @@ div.folio-image > img {
     .avatar {
         float: none;
         text-align: center;
+        margin-right: 0;
     }
 
     div.folio-cards > div {
