@@ -1,33 +1,10 @@
-module ResumePage.Skills exposing (Skill, SkillsPage, defaultSkillsPage, renderSkillsPage)
+module ResumePage.Skills exposing (renderSkillsPage)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Ionicon.Ios as IonIos
 import ResumePage.Helpers exposing (..)
-
-
-type alias SkillsPage =
-    { skills : List Skill }
-
-
-type alias Skill =
-    { name : String
-    , rating : Float
-    , blurb : String
-    }
-
-
-defaultSkillsPage : SkillsPage
-defaultSkillsPage =
-    { skills =
-        [ Skill "Python" 4.5 "Primary hobby language, no industry experience (but VERY much wanted)"
-        , Skill "Elm" 2.5 "Current favorite hobby web language, no industry experience (also very much wanted)"
-        , Skill "Nim" 2.0 "New backend compiled language to learn metaprogramming"
-        , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps"
-        , Skill "C#" 3.5 "Heavily used in industry experience, including several production apps"
-        , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can"
-        ]
-    }
+import ResumePage.Types exposing (Skill, SkillsPage)
 
 
 toStars : Float -> List (Html msg)

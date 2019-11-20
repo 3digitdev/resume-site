@@ -1,10 +1,4 @@
-module ResumePage.About exposing
-    ( AboutPage
-    , Email(..)
-    , SocialLink(..)
-    , defaultAboutPage
-    , renderAboutPage
-    )
+module ResumePage.About exposing (renderAboutPage)
 
 import Html exposing (..)
 import Html.Attributes exposing (..)
@@ -13,54 +7,7 @@ import Ionicon.Ios as IonIos
 import Ionicon.Social as IonSoc
 import Maybe.Extra exposing (unwrap)
 import ResumePage.Helpers exposing (..)
-
-
-type alias AboutPage =
-    { avatar : Maybe String -- path to image.  recommend no bigger than 256px square
-    , name : String -- Full name
-    , city : Maybe String
-    , stateOrProv : Maybe String
-    , country : Maybe String
-    , email : Maybe Email
-    , socialLinks : List SocialLink
-    , bio : List String -- A list of paragraphs for your bio
-    }
-
-
-type Email
-    = TextEmail String -- TODO: autoformat as  "foo (at) bar (dot) baz"
-    | ImageEmail String
-
-
-type SocialLink
-    = GitHub String
-    | Twitter String
-    | Facebook String
-    | LinkedIn String
-    | Website String
-
-
-defaultAboutPage : AboutPage
-defaultAboutPage =
-    { avatar = Just "square.png"
-    , name = "Max Andrew Bach Bussiere"
-    , city = Just "Milwaukee"
-    , stateOrProv = Just "Wisconsin"
-    , country = Just "USA"
-    , email = Just (ImageEmail "email.png")
-    , socialLinks =
-        [ GitHub "https://github.com/3digitdev/"
-        , Twitter "https://www.twitter.com/"
-        , Facebook "https://www.facebook.com/"
-        , LinkedIn "https://www.linkedin.com/in/maxbuss"
-        , Website "https://me.3digit.dev/"
-        ]
-    , bio =
-        [ "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        , "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        , "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        ]
-    }
+import ResumePage.Types exposing (AboutPage, Email(..), SocialLink(..))
 
 
 renderAboutPage : AboutPage -> Html msg

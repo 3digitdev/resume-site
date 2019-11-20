@@ -258,13 +258,12 @@ div.folio-image > img {
     .nav {
         margin-bottom: 0;
     }
-}
-
-@media (min-width: 550px) and (max-width: 1366px){
-    div.three.columns.nav-bar {
-        width: 100%;
-    }
-    div.nine.columns {
-        width: 100%
+    @media (min-width: 550px) and (max-width: 1366px){
+        div.three.columns.nav-bar {
+            width: 100%;
+        }
+        div.nine.columns {
+            width: 100%
+        }
     }
 }
