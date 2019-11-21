@@ -52,7 +52,7 @@ myResume =
 
 aboutMe : AboutPage
 aboutMe =
-    { avatar = Just "square.png"
+    { avatar = Just "sampleAvatar.png"
     , name = "Max Andrew Bach Bussiere"
     , city = Just "Milwaukee"
     , stateOrProv = Just "Wisconsin"
@@ -60,15 +60,15 @@ aboutMe =
     , email = Just (ImageEmail "email.png")
     , socialLinks =
         [ GitHub "https://github.com/3digitdev/"
-        , Twitter "https://www.twitter.com/"
-        , Facebook "https://www.facebook.com/"
         , LinkedIn "https://www.linkedin.com/in/maxbuss"
         , Website "https://me.3digit.dev/"
         ]
     , bio =
-        [ "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        , "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-        , "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+        [ "The single biggest thing to know about me is that I absolutely adore programming.  Despite not having started before I went to college, it has truly become my passion, and being able to do it every day is phenomenal.  I love the problem solving, and I love the feeling of tracking down that one bug that's been plaguing me.  I spend my free time making projects when I think of them, and I will take any opportunity I can to write more code.  Being able to do something that I enjoy so much makes me incredibly lucky, I feel."
+        , "A bit more about me though 一 I consider myself someone who prides himself on high quality code.  I value maintainable and readable code and applications over \"clever\" solutions, and always try to think about who will be coming into the code after me.  I also love to automate things 一 I abhor doing things \"the long way\" if I can avoid it, and I am constantly looking for opportunities to make my life and the lives of those around me easier through scripting and automating tasks."
+        , "I also pride myself on communication skills.  I am an excellent public speaker, and a very friendly and easy-to-get-along-with person.  I am always enabling and looking for ways to improve communcation across teams, and I have been lauded by coworkers as being someone who force multiplies teams by being the one willing to sit everyone down to have a chat about a problem."
+        , "I have had the opportunity already in my career to wear many hats.  I have worked as a consultant, I have done Backend development, I have done frontend development, I have been a tester, and I have done large amounts of teaching and mentoring.  I believe myself to be a great teacher, and I highly enjoy being able to help other people.  I believe this is largely due to my love of what I end up teaching and being able to share that excitement with others."
+        , "So why should you want to hire me?  Well if all of the above hasn't convinced you, I'm not entirely sure what else will, but I am always willing to chat and you can ask questions of me to your heart's content, and I hope I can prove just how much of an asset I can be to your teams."
         ]
     }
 
@@ -119,36 +119,17 @@ myEducation =
                 "May 2012"
                 "B.S. Computer Science"
                 "3.2"
-                [ TextItem "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
-                , TextItem "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                , TextItem "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
-                , TextItem "ut aliquip ex ea commodo consequat. Duis aute irure dolor in"
-                , TextItem "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                , TextItem "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                [ TextItem "Was a tutor for the Computer Science department for 100, 200, and 300 level classes"
+                , TextItem "Primarily worked with C/C++, JavaScript, and Python"
                 ]
             ]
-        , bootCamps =
-            [ BootCamp
-                "DevCodeCamp"
-                "https://devcodecamp.com/"
-                "March 2015"
-                "March 2016"
-                [ TextItem "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
-                , TextItem "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                , TextItem "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
-                , TextItem "ut aliquip ex ea commodo consequat. Duis aute irure dolor in"
-                , TextItem "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                , TextItem "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-                ]
-            ]
+        , bootCamps = []
         , otherEducation =
             OtherEducation
-                [ TextItem "Lorem ipsum dolor sit amet, consectetur adipisicing elit"
-                , TextItem "sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
-                , TextItem "Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi"
-                , TextItem "ut aliquip ex ea commodo consequat. Duis aute irure dolor in"
-                , TextItem "reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
-                , TextItem "Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+                [ TextItem "Have done extensive work on my own time to learn new technologies and languages"
+                , TextItem "Have studied both frontend and backend languages/frameworks"
+                , TextItem "Deploy and manage self-made webapps with full CI/CD pipeline"
+                , TextItem "Have taken online courses at times for various things including AWS and React"
                 ]
         }
 
@@ -158,8 +139,8 @@ mySkills =
     Just
         { skills =
             [ Skill "Python" 4.5 "Primary hobby language, no industry experience (but VERY much wanted)"
-            , Skill "Elm" 2.5 "Current favorite hobby web language, no industry experience (also very much wanted)"
-            , Skill "Nim" 2.0 "New backend compiled language to learn metaprogramming"
+            , Skill "Elm" 3.0 "Current favorite hobby web language, no industry experience (also very much wanted)"
+            , Skill "Nim" 2.5 "New backend compiled language to learn metaprogramming"
             , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps"
             , Skill "C#" 3.5 "Heavily used in industry experience, including several production apps"
             , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can"
@@ -180,7 +161,6 @@ myPortfolio =
                     , TextItem "Has timed mini-game for practice"
                     , TextItem "Has fuzzy-search and reverse search of 500+ verbs"
                     ]
-                , ImageCard "verbly.png"
                 , TextCard "Tech Stack"
                     [ TextItem "Backend is Nim exposing REST API"
                     , LinkItem "http://nim-lang.org/" "Nim Language"
@@ -188,6 +168,27 @@ myPortfolio =
                     , TextItem "Frontend is in Elm with Materialize CSS"
                     , LinkItem "https://elm-lang.org/" "Elm Language"
                     , LinkItem "https://materializecss.com/" "Materialize CSS"
+                    ]
+                , ImageCard "verbly-ta.png"
+                , ImageCard "verbly-tr.png"
+                , TextCard "CI/CD"
+                    [ TextItem "App is deployed on semver tags"
+                    , TextItem "GitHub Action deploys the Elm portion to Firebase"
+                    , TextItem "Google Cloud Platform triggers off semver tag"
+                    , TextItem "Nim backend API deploys to a Docker image running on Google Cloud"
+                    ]
+                ]
+            , PortfolioItem
+                "Elm Resume Site Generator"
+                [ LinkCard "https://github.com/3digitdev/elm-resume-site" "GitHub Repo"
+                , TextCard "Information"
+                    [ TextItem "OpenSource Elm-based generator"
+                    , TextItem "Builds a fully-modular resume SPA"
+                    , TextItem "Fully responsive CSS for all devices"
+                    ]
+                , TextCard "Fun Fact"
+                    [ TextItem "This resume website is built on an unmodified fork of the project!"
+                    , TextItem "Only code modified is in 'Main.elm' to define resume parts"
                     ]
                 ]
             ]
