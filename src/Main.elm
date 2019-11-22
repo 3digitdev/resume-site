@@ -52,7 +52,7 @@ myResume =
 
 aboutMe : AboutPage
 aboutMe =
-    { avatar = Just "sampleAvatar.png"
+    { avatar = Just "3DD.svg"
     , name = "Max Andrew Bach Bussiere"
     , city = Just "Milwaukee"
     , stateOrProv = Just "Wisconsin"

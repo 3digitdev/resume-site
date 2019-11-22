@@ -91,6 +91,8 @@ a.nav-link {
 .avatar {
     float: left;
     margin-right: 2rem;
+    min-width: 256px;
+    min-height: 256px;
 }
 
 .about {
@@ -228,6 +230,7 @@ div.folio-image > img {
         float: none;
         text-align: center;
         margin-right: 0;
+        /* max-width: px; */
     }
 
     div.folio-cards > div {

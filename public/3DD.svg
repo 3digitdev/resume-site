@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 24.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 252 252" style="enable-background:new 0 0 252 252;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:#373638;}
+	.st1{fill:none;stroke:#36A1C1;stroke-width:2.5;stroke-linecap:round;stroke-miterlimit:10;}
+	.st2{fill:none;stroke:#36A1C1;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10;}
+	.st3{display:none;}
+	.st4{display:inline;fill:#683188;}
+	.st5{font-family:'MyriadPro-Regular';}
+	.st6{font-size:51.8538px;}
+	.st7{font-size:50.0376px;}
+	.st8{font-size:50.7532px;}
+	.st9{fill:#36A1C1;stroke:#36A1C1;stroke-width:1.5;stroke-miterlimit:10;}
+</style>
+<g id="Layer_2">
+	<rect class="st0" width="252" height="252"/>
+</g>
+<g id="Layer_1">
+	<line class="st1" x1="19.1" y1="52.5" x2="53.9" y2="236"/>
+	<line class="st1" x1="53.9" y1="236" x2="102.6" y2="17.7"/>
+	<polyline class="st2" points="136.4,151.3 159.7,176.1 53.9,236 	"/>
+	<g class="st3">
+		<text transform="matrix(1.1922 0 0 1 93.3604 122.5293)" class="st4 st5 st6">3</text>
+		<text transform="matrix(1.0304 0 0 1 128.4141 124.6836)" class="st4 st5 st7">D</text>
+		<text transform="matrix(1.0127 0 0 1 128.2383 171.8135)" class="st4 st5 st8">D</text>
+	</g>
+	<g>
+		<path class="st9" d="M154.7,68.1c0,11.6-9.4,17.4-19.9,18.2c12.5,0.4,22.5,6.9,22.5,19.8c0,12.8-10.7,21.7-26.9,21.7
+			c-11,0-18.4-2.9-25.4-9.4l1.4-0.9c7,6.4,13.9,8.8,23.9,8.8c15.4,0,24.9-8.4,24.9-20.1c0-12.7-9.9-19-24.5-19h-5.1l0.2-1.5h4.9
+			c10.9,0,21.9-5.4,21.9-17.5c0-10.1-8.2-16.8-21.4-16.8c-8.2,0-15.5,2.2-22.4,7.8l-1.3-1c6.8-5.6,14.4-8.2,23.7-8.2
+			C145.9,49.9,154.7,57.4,154.7,68.1z"/>
+	</g>
+	<g>
+		<path class="st9" d="M197.1,50.2c20.5,0,41.8,6.1,41.8,37.3c0,31.7-21.7,39-41,39h-16.9V50.2L197.1,50.2L197.1,50.2z M183,125h15
+			c18.9,0,38.9-7.2,38.9-37.5c0-30.5-20.5-35.8-39.8-35.8h-14L183,125z"/>
+	</g>
+	<g>
+		<path class="st9" d="M197.1,141.1c20.5,0,41.8,6.1,41.8,37.3c0,31.7-21.7,39-41,39h-16.9v-76.3L197.1,141.1L197.1,141.1z M183,216
+			h15c18.9,0,38.9-7.2,38.9-37.5c0-30.5-20.5-35.8-39.8-35.8h-14L183,216z"/>
+	</g>
+</g>
+</svg>
