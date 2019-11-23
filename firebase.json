@@ -1,6 +1,5 @@
 {
   "hosting": {
-    "site": "resume-site",
     "public": "public",
     "ignore": [
       "firebase.json",
