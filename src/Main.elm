@@ -57,7 +57,7 @@ aboutMe =
     , city = Just "Milwaukee"
     , stateOrProv = Just "Wisconsin"
     , country = Just "USA"
-    , email = Just (ImageEmail "email.png")
+    , email = Just (ImageEmail "email3dd.png")
     , socialLinks =
         [ GitHub "https://github.com/3digitdev/"
         , LinkedIn "https://www.linkedin.com/in/maxbuss"
