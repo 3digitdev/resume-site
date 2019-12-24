@@ -152,6 +152,29 @@ myPortfolio =
     Just
         { items =
             [ PortfolioItem
+                "Sw/Sh Pokemon App"
+                [ LinkCard "https://dex.3digit.dev/" "Sw/Sh Dex"
+                , LinkCard "https://github.com/3digitdev/swshdex/" "Github Repo"
+                , TextCard "Description"
+                    [ TextItem "Helper app for Pokemon Sword/Shield"
+                    , TextItem "Has 3 different 'modes' you can use to help when playing"
+                    ]
+                , TextCard "Modes"
+                    [ TextItem "Pokedex Mode:  Allows searching by name. Links types to Type Matchup Mode"
+                    , TextItem "Type Matchup Mode:  Select 1-2 types, and get information about the type regarding offense, defense, and suggested Pokemon"
+                    , TextItem "Party Planner Mode:  Enter your party members in and get an evaluation of your party regarding type matchups, including suggestions on types to fill gaps"
+                    ]
+                , ImageCard "swshdex-pp.png"
+                , TextCard "Tech Stack"
+                    [ TextItem "Entire app is written in Elm"
+                    , LinkItem "https://elm-lang.org/" "Elm Language"
+                    , TextItem "Data is handled with static JSON files for now"
+                    , TextItem "(See README on why I'm not using an API)"
+                    , TextItem "CSS is provided by:"
+                    , LinkItem "https://github.com/nostalgic-css/NES.css" "NES.css"
+                    ]
+                ]
+            , PortfolioItem
                 "Verbly"
                 [ LinkCard "https://verbly.3digit.dev/" "Verbly"
                 , TextCard "Description"
@@ -162,7 +185,7 @@ myPortfolio =
                     ]
                 , TextCard "Tech Stack"
                     [ TextItem "Backend is Nim exposing REST API"
-                    , LinkItem "http://nim-lang.org/" "Nim Language"
+                    , LinkItem "https://nim-lang.org/" "Nim Language"
                     , TextItem "Database is SQLite"
                     , TextItem "Frontend is in Elm with Materialize CSS"
                     , LinkItem "https://elm-lang.org/" "Elm Language"
