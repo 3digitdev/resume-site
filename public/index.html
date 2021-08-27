@@ -1,22 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <!-- Basic Page Needs
+    <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta charset="utf-8">
-  <title>Max Bussiere | Resume</title>
-  <!-- Mobile Specific Metas
+    <meta charset="utf-8">
+    <title>Max Bussiere | Resume</title>
+    <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <!-- FONT
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- FONT
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
-  <!-- CSS
+    <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <!-- CSS
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
-  <link rel="stylesheet" href="css/normalize.css">
-  <link rel="stylesheet" href="css/skeleton.css">
-  <link rel="stylesheet" href="css/override.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/override.css">
 </head>
+
 <body>
     <div id="root">
     </div>
@@ -26,13 +28,22 @@
             node: document.getElementById("root")
         });
     </script>
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="/__/firebase/7.5.0/firebase-app.js"></script>
-
-    <!-- TODO: Add SDKs for Firebase products that you want to use
-    https://firebase.google.com/docs/web/setup#available-libraries -->
-
-    <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+    <script type="module">
+        // Import the functions you need from the SDKs you need
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.0/firebase-app.js";
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAQrdttnNb6o16Ry1XHmo3g04thswIyGkk",
+            authDomain: "resume-3dd.firebaseapp.com",
+            databaseURL: "https://resume-3dd.firebaseio.com",
+            projectId: "resume-3dd",
+            storageBucket: "resume-3dd.appspot.com",
+            messagingSenderId: "821203599002",
+            appId: "1:821203599002:web:a943ec2347b215a5e32923"
+        };
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+    </script>
 </body>
+
 </html>
