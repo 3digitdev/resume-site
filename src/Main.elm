@@ -67,7 +67,7 @@ aboutMe =
         [ "The single biggest thing to know about me is that I absolutely adore programming.  Despite not having started before I went to college, it has truly become my passion, and being able to do it every day is phenomenal.  I love the problem solving, and I love the feeling of tracking down that one bug that's been plaguing me.  I spend my free time making projects when I think of them, and I will take any opportunity I can to write more code.  Being able to do something that I enjoy so much makes me incredibly lucky, I feel."
         , "A bit more about me though 一 I consider myself someone who prides himself on high quality code.  I value maintainable and readable code and applications over \"clever\" solutions, and always try to think about who will be coming into the code after me.  I also love to automate things 一 I abhor doing things \"the long way\" if I can avoid it, and I am constantly looking for opportunities to make my life and the lives of those around me easier through scripting and automating tasks."
         , "I also pride myself on communication skills.  I am an excellent public speaker, and a very friendly person.  I am always enabling and looking for ways to improve communication across teams, and I have been lauded by coworkers as being someone who is a force multiplier for teams by being the one willing to sit everyone down to have a chat about a problem."
-        , "I have had the opportunity already in my career to wear many hats.  I have worked as a consultant, I have done backend development, I have done front-end development, I have been a tester, and I have done large amounts of teaching and mentoring.  I believe myself to be a great teacher, and I highly enjoy being able to help other people.  I believe this is largely due to my love of what I end up teaching and being able to share that excitement with others."
+        , "I have had the opportunity in my career to wear many hats.  I have worked as a consultant, I have done backend development, I have done front-end development, I have been a tester, and I have done large amounts of teaching and mentoring.  I believe myself to be a great teacher, and I highly enjoy being able to help other people.  I believe this is largely due to my love of what I end up teaching and being able to share that excitement with others."
         ]
     }
 
@@ -76,9 +76,21 @@ myWorkHistory : Maybe WorkHistoryPage
 myWorkHistory =
     Just
         [ Job
+            "DataKitchen"
+            "March 2020"
+            "Present"
+            "Senior Full-Stack Engineer"
+            [ TextItem "Team lead of 4 engineers for the DataKitchen API and accompanying CLI app"
+            , TextItem "Conceptualized, designed, planned, and currently executing a large-scale refactor of our API to a new major version using well-defined REST principles and usability features"
+            , TextItem "Helping lead the way for better code quality, better tests, and most importantly better documentation of our architecture"
+            , TextItem "Mentoring and on-boarding of multiple engineers at various skill levels with our codebase and teaching them code quality techniques"
+            , TextItem "Customer-facing support rotation and helping debug issues live on a K8s cluster"
+            , TextItem "Working with a combination of Customers, UX designer, Product Owners, and Front-end team to deliver code that works well and is helpful, along with defining realistic features and plans"
+            ]
+        , Job
             "Northwestern Mutual"
             "July 2017"
-            "Present"
+            "March 2020"
             "Senior Test Engineer"
             [ TextItem "Lead tester on a brand new rewrite of front-end for a large enterprise application"
             , TextItem "Developed automation strategy to make end-to-end tests run 3x faster with no loss of reliability"
@@ -142,7 +154,7 @@ mySkills =
             , Skill "Nim" 2.5 "New backend compiled language to learn metaprogramming"
             , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps"
             , Skill "C#" 3.5 "Heavily used in industry experience, including several production apps"
-            , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can"
+            , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code :D"
             ]
         }
 
