@@ -5305,10 +5305,10 @@ var $author$project$Main$mySkills = $elm$core$Maybe$Just(
 	{
 		a0: _List_fromArray(
 			[
-				A3($author$project$ResumePage$Types$Skill, 'Python', 4.5, 'Primary hobby language, no industry experience (but VERY much wanted)'),
-				A3($author$project$ResumePage$Types$Skill, 'Elm', 3.0, 'Current favorite hobby web language, no industry experience (also very much wanted)'),
+				A3($author$project$ResumePage$Types$Skill, 'Python', 4.5, 'Primary (and favorite!) language; several years of industry experience with large microservice codebase including a REST API and CLI app'),
+				A3($author$project$ResumePage$Types$Skill, 'Elm', 3.0, 'Current favorite hobby web language; no industry experience (also very much wanted)'),
 				A3($author$project$ResumePage$Types$Skill, 'Nim', 2.5, 'New backend compiled language to learn metaprogramming'),
-				A3($author$project$ResumePage$Types$Skill, 'JavaScript', 3.5, 'Heavily used in industry experience, including production apps'),
+				A3($author$project$ResumePage$Types$Skill, 'JavaScript', 3.5, 'Heavily used in industry experience, including production apps, though not high on my list of favorite language :D'),
 				A3($author$project$ResumePage$Types$Skill, 'C#', 3.5, 'Heavily used in industry experience, including several production apps'),
 				A3($author$project$ResumePage$Types$Skill, 'Regex', 4.0, 'Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code :D')
 			])

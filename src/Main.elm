@@ -149,10 +149,10 @@ mySkills : Maybe SkillsPage
 mySkills =
     Just
         { skills =
-            [ Skill "Python" 4.5 "Primary hobby language, no industry experience (but VERY much wanted)"
-            , Skill "Elm" 3.0 "Current favorite hobby web language, no industry experience (also very much wanted)"
+            [ Skill "Python" 4.5 "Primary (and favorite!) language; several years of industry experience with large microservice codebase including a REST API and CLI app"
+            , Skill "Elm" 3.0 "Current favorite hobby web language; no industry experience (also very much wanted)"
             , Skill "Nim" 2.5 "New backend compiled language to learn metaprogramming"
-            , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps"
+            , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps, though not high on my list of favorite language :D"
             , Skill "C#" 3.5 "Heavily used in industry experience, including several production apps"
             , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code :D"
             ]
