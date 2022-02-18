@@ -54,13 +54,13 @@ aboutMe : AboutPage
 aboutMe =
     { avatar = Just "3DD.svg"
     , name = "Max Andrew Bach Bussiere"
-    , city = Just "Milwaukee"
-    , stateOrProv = Just "Wisconsin"
+    , city = Just "Bowling Green"
+    , stateOrProv = Just "Kentucky"
     , country = Just "USA"
     , email = Just (ImageEmail "email3dd.png")
     , socialLinks =
         [ GitHub "https://github.com/3digitdev/"
-        , LinkedIn "https://www.linkedin.com/in/maxbuss"
+        , LinkedIn "https://www.linkedin.com/in/max-bussiere"
         , Website "https://me.3digit.dev/"
         ]
     , bio =
@@ -79,7 +79,7 @@ myWorkHistory =
             "DataKitchen"
             "March 2020"
             "Present"
-            "Senior Full-Stack Engineer"
+            "Lead Engineer, API Team"
             [ TextItem "Team lead of 4 engineers for the DataKitchen API and accompanying CLI app"
             , TextItem "Conceptualized, designed, planned, and currently executing a large-scale refactor of our API to a new major version using well-defined REST principles and usability features"
             , TextItem "Helping lead the way for better code quality, better tests, and most importantly better documentation of our architecture"
@@ -151,7 +151,7 @@ mySkills =
         { skills =
             [ Skill "Python" 4.5 "Primary (and favorite!) language; several years of industry experience with large microservice codebase including a REST API and CLI app"
             , Skill "Elm" 3.0 "Current favorite hobby web language; no industry experience (also very much wanted)"
-            , Skill "Nim" 2.5 "New backend compiled language to learn metaprogramming"
+            , Skill "Nim" 2.5 "New backend compiled language that lets me enjoy compiled languages again with many of the benefits of Python"
             , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps, though not high on my list of favorite language :D"
             , Skill "C#" 3.5 "Heavily used in industry experience, including several production apps"
             , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code :D"

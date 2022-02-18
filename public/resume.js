@@ -5120,7 +5120,7 @@ var $author$project$Main$aboutMe = {
 	as: $elm$core$Maybe$Just('3DD.svg'),
 	at: _List_fromArray(
 		['The single biggest thing to know about me is that I absolutely adore programming.  Despite not having started before I went to college, it has truly become my passion, and being able to do it every day is phenomenal.  I love the problem solving, and I love the feeling of tracking down that one bug that\'s been plaguing me.  I spend my free time making projects when I think of them, and I will take any opportunity I can to write more code.  Being able to do something that I enjoy so much makes me incredibly lucky, I feel.', 'A bit more about me though 一 I consider myself someone who prides himself on high quality code.  I value maintainable and readable code and applications over \"clever\" solutions, and always try to think about who will be coming into the code after me.  I also love to automate things 一 I abhor doing things \"the long way\" if I can avoid it, and I am constantly looking for opportunities to make my life and the lives of those around me easier through scripting and automating tasks.', 'I also pride myself on communication skills.  I am an excellent public speaker, and a very friendly person.  I am always enabling and looking for ways to improve communication across teams, and I have been lauded by coworkers as being someone who is a force multiplier for teams by being the one willing to sit everyone down to have a chat about a problem.', 'I have had the opportunity in my career to wear many hats.  I have worked as a consultant, I have done backend development, I have done front-end development, I have been a tester, and I have done large amounts of teaching and mentoring.  I believe myself to be a great teacher, and I highly enjoy being able to help other people.  I believe this is largely due to my love of what I end up teaching and being able to share that excitement with others.']),
-	aA: $elm$core$Maybe$Just('Milwaukee'),
+	aA: $elm$core$Maybe$Just('Bowling Green'),
 	aB: $elm$core$Maybe$Just('USA'),
 	aG: $elm$core$Maybe$Just(
 		$author$project$ResumePage$Types$ImageEmail('email3dd.png')),
@@ -5128,10 +5128,10 @@ var $author$project$Main$aboutMe = {
 	a2: _List_fromArray(
 		[
 			$author$project$ResumePage$Types$GitHub('https://github.com/3digitdev/'),
-			$author$project$ResumePage$Types$LinkedIn('https://www.linkedin.com/in/maxbuss'),
+			$author$project$ResumePage$Types$LinkedIn('https://www.linkedin.com/in/max-bussiere'),
 			$author$project$ResumePage$Types$Website('https://me.3digit.dev/')
 		]),
-	a4: $elm$core$Maybe$Just('Wisconsin')
+	a4: $elm$core$Maybe$Just('Kentucky')
 };
 var $author$project$ResumePage$Types$FormalEducation = F5(
 	function (school, gradDate, degree, gpa, info) {
@@ -5307,7 +5307,7 @@ var $author$project$Main$mySkills = $elm$core$Maybe$Just(
 			[
 				A3($author$project$ResumePage$Types$Skill, 'Python', 4.5, 'Primary (and favorite!) language; several years of industry experience with large microservice codebase including a REST API and CLI app'),
 				A3($author$project$ResumePage$Types$Skill, 'Elm', 3.0, 'Current favorite hobby web language; no industry experience (also very much wanted)'),
-				A3($author$project$ResumePage$Types$Skill, 'Nim', 2.5, 'New backend compiled language to learn metaprogramming'),
+				A3($author$project$ResumePage$Types$Skill, 'Nim', 2.5, 'New backend compiled language that lets me enjoy compiled languages again with many of the benefits of Python'),
 				A3($author$project$ResumePage$Types$Skill, 'JavaScript', 3.5, 'Heavily used in industry experience, including production apps, though not high on my list of favorite language :D'),
 				A3($author$project$ResumePage$Types$Skill, 'C#', 3.5, 'Heavily used in industry experience, including several production apps'),
 				A3($author$project$ResumePage$Types$Skill, 'Regex', 4.0, 'Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code :D')
@@ -5325,7 +5325,7 @@ var $author$project$Main$myWorkHistory = $elm$core$Maybe$Just(
 			'DataKitchen',
 			'March 2020',
 			'Present',
-			'Senior Full-Stack Engineer',
+			'Lead Engineer, API Team',
 			_List_fromArray(
 				[
 					$author$project$ResumePage$Helpers$TextItem('Team lead of 4 engineers for the DataKitchen API and accompanying CLI app'),
