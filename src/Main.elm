@@ -150,12 +150,12 @@ mySkills : Maybe SkillsPage
 mySkills =
     Just
         { skills =
-            [ Skill "Python" 4.5 "Primary (and favorite!) language; several years of industry experience with large microservice codebase including a REST API and CLI app"
-            , Skill "Elm" 3.0 "Current favorite hobby web language; no industry experience (also very much wanted)"
+            [ Skill "Python" 5.0 "Primary (and favorite!) language; many years of industry experience with large microservice codebases including REST APIs"
+            , Skill "Elm" 3.0 "Current favorite hobby web language; no industry experience"
             , Skill "Nim" 2.5 "New backend compiled language that lets me enjoy compiled languages again with many of the benefits of Python"
-            , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps, though not high on my list of favorite language :D"
+            , Skill "JavaScript" 3.5 "Heavily used in industry experience, including production apps"
             , Skill "C#" 3.5 "Heavily used in industry experience, including several production apps"
-            , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code :D"
+            , Skill "Regex" 4.0 "Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code"
             ]
         }
 
@@ -181,10 +181,8 @@ myPortfolio =
                 , TextCard "Tech Stack"
                     [ TextItem "Entire app is written in Elm"
                     , LinkItem "https://elm-lang.org/" "Elm Language"
-                    , TextItem "Data is handled with static JSON files for now"
-                    , TextItem "(See README on why I'm not using an API)"
-                    , TextItem "CSS is provided by:"
-                    , LinkItem "https://github.com/nostalgic-css/NES.css" "NES.css"
+                    , TextItem "Data is handled with static JSON files for now (See README on why I'm not using an API)"
+                    , LinkItem "https://github.com/nostalgic-css/NES.css" "CSS is provided by NES.css"
                     ]
                 ]
             , PortfolioItem
@@ -222,9 +220,7 @@ myPortfolio =
                     , TextItem "Fully responsive CSS for all devices"
                     ]
                 , TextCard "Fun Fact"
-                    [ TextItem "This resume website is built on an unmodified fork of the project!"
-                    , TextItem "Only code modified is in 'Main.elm' to define resume parts"
-                    ]
+                    [ TextItem "This resume website is built on an unmodified fork of the project! (Only code modified is in 'Main.elm' to define resume parts)" ]
                 ]
             ]
         }
