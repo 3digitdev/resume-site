@@ -5119,7 +5119,7 @@ var $author$project$ResumePage$Types$Website = function (a) {
 var $author$project$Main$aboutMe = {
 	as: $elm$core$Maybe$Just('3DD.svg'),
 	at: _List_fromArray(
-		['As a developer, I am a leader, an architect, and a Developer Experience advocate.  I love good documentation, clean code, and using the right tools without chasing hype without other reasons.  I am a proven 10X developer on my teams, delivering high quality code in a fraction of the time expected of me.  I am curious, and will dive into new topics to solve them no matter what.', 'As a leader, I have experience mentoring, tutoring, and decision making.  I know that one of a leader\'s primary jobs is to be a goalie for their team, to get out of their way, and get other things out of their way so they can succeed.  I need to be, and am, a force multiplier for any developers I work with, and understand the politics of business well enough to play the game for the devs so they can focus on shipping.', 'As a communicator, I am eloquent and charismatic.  I take pride in my communication skills (writing AND speaking) and have public speaking skills as well as the ability to explain complex topics and understand the needs of those I\'m speaking with to help people understand each other.', 'I am also a professional \'no\' man -- I will tell you the truth no matter what title you hold, or what your experience is, and I will keep an entire team honest on their decisions and discussion.  You can disagree with me, and I can disagree with you, but in the end I don\'t take offense and hope the same of you.  I can \'disagree and commit\'.  I understand not everything can be discussed to death, and the most important thing is to ship a product in the end.  Perfect is the enemy of good, but I will help you get as close to perfect as possible.', 'I am a developer, a leader, a communicator, and an architect.  You want me on your team, I promise.']),
+		['I am a developer with primary experience in the backend, but experience across the whole stack.  I have spent my career advocating for good developer experience, better documentation, and no premature optimization.  Perfect is the enemy of good, and the most important feature of a project is that it\'s being used.', 'I am looking to become more of a leader, or manager, and help usher other developers to the heights they want to achieve as well.  I have experience with tutoring others, and enjoy teaching people new things.']),
 	aA: $elm$core$Maybe$Just('Bowling Green'),
 	aB: $elm$core$Maybe$Just('USA'),
 	aG: $elm$core$Maybe$Just(
@@ -5194,17 +5194,17 @@ var $author$project$Main$myPortfolio = $elm$core$Maybe$Just(
 			[
 				A2(
 				$author$project$ResumePage$Types$PortfolioItem,
-				'Sw/Sh Pokemon App',
+				'Pokemon App',
 				_List_fromArray(
 					[
-						A2($author$project$ResumePage$Types$LinkCard, 'https://dex.3digit.dev/', 'Sw/Sh Dex'),
+						A2($author$project$ResumePage$Types$LinkCard, 'https://dex.3digit.dev/', 'Sw/Sh/Sc/Vi Dex'),
 						A2($author$project$ResumePage$Types$LinkCard, 'https://github.com/3digitdev/swshdex/', 'Github Repo'),
 						A2(
 						$author$project$ResumePage$Types$TextCard,
 						'Description',
 						_List_fromArray(
 							[
-								$author$project$ResumePage$Helpers$TextItem('Helper app for Pokemon Sword/Shield'),
+								$author$project$ResumePage$Helpers$TextItem('Helper app for Pokemon Sword/Shield/Scarlet/Violet'),
 								$author$project$ResumePage$Helpers$TextItem('Has 3 different \'modes\' you can use to help when playing')
 							])),
 						A2(
@@ -5226,6 +5226,29 @@ var $author$project$Main$myPortfolio = $elm$core$Maybe$Just(
 								A2($author$project$ResumePage$Helpers$LinkItem, 'https://elm-lang.org/', 'Elm Language'),
 								$author$project$ResumePage$Helpers$TextItem('Data is handled with static JSON files for now (See README on why I\'m not using an API)'),
 								A2($author$project$ResumePage$Helpers$LinkItem, 'https://github.com/nostalgic-css/NES.css', 'CSS is provided by NES.css')
+							]))
+					])),
+				A2(
+				$author$project$ResumePage$Types$PortfolioItem,
+				'Elm Resume Site Generator',
+				_List_fromArray(
+					[
+						A2($author$project$ResumePage$Types$LinkCard, 'https://github.com/3digitdev/elm-resume-site', 'GitHub Repo'),
+						A2(
+						$author$project$ResumePage$Types$TextCard,
+						'Information',
+						_List_fromArray(
+							[
+								$author$project$ResumePage$Helpers$TextItem('OpenSource Elm-based generator'),
+								$author$project$ResumePage$Helpers$TextItem('Builds a fully-modular resume SPA'),
+								$author$project$ResumePage$Helpers$TextItem('Fully responsive CSS for all devices')
+							])),
+						A2(
+						$author$project$ResumePage$Types$TextCard,
+						'Fun Fact',
+						_List_fromArray(
+							[
+								$author$project$ResumePage$Helpers$TextItem('This resume website is built on an unmodified fork of the project! (Only code modified is in \'Main.elm\' to define resume parts)')
 							]))
 					])),
 				A2(
@@ -5268,29 +5291,6 @@ var $author$project$Main$myPortfolio = $elm$core$Maybe$Just(
 								$author$project$ResumePage$Helpers$TextItem('Google Cloud Platform triggers off semver tag'),
 								$author$project$ResumePage$Helpers$TextItem('Nim backend API deploys to a Docker image running on Google Cloud')
 							]))
-					])),
-				A2(
-				$author$project$ResumePage$Types$PortfolioItem,
-				'Elm Resume Site Generator',
-				_List_fromArray(
-					[
-						A2($author$project$ResumePage$Types$LinkCard, 'https://github.com/3digitdev/elm-resume-site', 'GitHub Repo'),
-						A2(
-						$author$project$ResumePage$Types$TextCard,
-						'Information',
-						_List_fromArray(
-							[
-								$author$project$ResumePage$Helpers$TextItem('OpenSource Elm-based generator'),
-								$author$project$ResumePage$Helpers$TextItem('Builds a fully-modular resume SPA'),
-								$author$project$ResumePage$Helpers$TextItem('Fully responsive CSS for all devices')
-							])),
-						A2(
-						$author$project$ResumePage$Types$TextCard,
-						'Fun Fact',
-						_List_fromArray(
-							[
-								$author$project$ResumePage$Helpers$TextItem('This resume website is built on an unmodified fork of the project! (Only code modified is in \'Main.elm\' to define resume parts)')
-							]))
 					]))
 			])
 	});
@@ -5303,11 +5303,12 @@ var $author$project$Main$mySkills = $elm$core$Maybe$Just(
 		a0: _List_fromArray(
 			[
 				A3($author$project$ResumePage$Types$Skill, 'Python', 5.0, 'Primary (and favorite!) language; many years of industry experience with large microservice codebases including REST APIs'),
-				A3($author$project$ResumePage$Types$Skill, 'Elm', 3.0, 'Current favorite hobby web language; no industry experience'),
-				A3($author$project$ResumePage$Types$Skill, 'Nim', 2.5, 'New backend compiled language that lets me enjoy compiled languages again with many of the benefits of Python'),
-				A3($author$project$ResumePage$Types$Skill, 'JavaScript', 3.5, 'Heavily used in industry experience, including production apps'),
-				A3($author$project$ResumePage$Types$Skill, 'C#', 3.5, 'Heavily used in industry experience, including several production apps'),
-				A3($author$project$ResumePage$Types$Skill, 'Regex', 4.0, 'Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code')
+				A3($author$project$ResumePage$Types$Skill, 'Elm', 2.5, 'Current favorite hobby web language; no industry experience'),
+				A3($author$project$ResumePage$Types$Skill, 'JS/TS', 4.0, 'Heavily used in industry experience and personal projects'),
+				A3($author$project$ResumePage$Types$Skill, 'React', 3.0, 'Heavily used in recent industry experience, using modern concepts like functional components and hooks'),
+				A3($author$project$ResumePage$Types$Skill, 'PostgreSQL', 3.5, 'Heavily used in both personal projects and industry experience; my go-to database now'),
+				A3($author$project$ResumePage$Types$Skill, 'C#', 2.5, 'Heavily used in industry experience, including several production apps'),
+				A3($author$project$ResumePage$Types$Skill, 'Regex', 4.5, 'Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code')
 			])
 	});
 var $author$project$ResumePage$Types$Job = F5(
@@ -5319,9 +5320,22 @@ var $author$project$Main$myWorkHistory = $elm$core$Maybe$Just(
 		[
 			A5(
 			$author$project$ResumePage$Types$Job,
+			'Onebrief',
+			'June 2022',
+			'Present',
+			'Senior Fullstack Software Engineer',
+			_List_fromArray(
+				[
+					$author$project$ResumePage$Helpers$TextItem('Entered into a small team of developers and a company looking to take off, and have been helping push out features at a rapidfire pace to help get the company going'),
+					$author$project$ResumePage$Helpers$TextItem('Got in-depth knowledge of new technologies including collaborative editing using Operation Transformations'),
+					$author$project$ResumePage$Helpers$TextItem('Production experience with React building on my personal project knowledge of the framework'),
+					$author$project$ResumePage$Helpers$TextItem('Helped polish our Postgres database and built many triggers to help with data validation and syncing')
+				])),
+			A5(
+			$author$project$ResumePage$Types$Job,
 			'DataKitchen',
 			'March 2020',
-			'Present',
+			'May 2022',
 			'Lead Engineer, API Team',
 			_List_fromArray(
 				[
