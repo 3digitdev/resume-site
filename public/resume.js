@@ -5119,7 +5119,7 @@ var $author$project$ResumePage$Types$Website = function (a) {
 var $author$project$Main$aboutMe = {
 	as: $elm$core$Maybe$Just('3DD.svg'),
 	at: _List_fromArray(
-		['I am a developer with primary experience in the backend, but experience across the whole stack.  I have spent my career advocating for good developer experience, better documentation, and no premature optimization.  Perfect is the enemy of good, and the most important feature of a project is that it\'s being used.', 'I am looking to become more of a leader, or manager, and help usher other developers to the heights they want to achieve as well.  I have experience with tutoring others, and enjoy teaching people new things.']),
+		['I am a team leader and developer with experience across the whole stack, including QA. I have spent my career advocating for good developer experience, better documentation, and no premature optimization. Perfect is the enemy of good, and the most important feature of a project is that it\'s being used.', 'I am looking to expand my skills as a leader, and help usher other developers to the heights they want to achieve as well. I have experience leading multiple teams working on production applications, and making important decisions on structure, architecture, and scoping.']),
 	aA: $elm$core$Maybe$Just('Bowling Green'),
 	aB: $elm$core$Maybe$Just('USA'),
 	aG: $elm$core$Maybe$Just(
@@ -5148,17 +5148,7 @@ var $author$project$Main$myEducation = $elm$core$Maybe$Just(
 		ax: _List_Nil,
 		aK: _List_fromArray(
 			[
-				A5(
-				$author$project$ResumePage$Types$FormalEducation,
-				'Morningside College',
-				'May 2012',
-				'B.S. Computer Science',
-				'3.2',
-				_List_fromArray(
-					[
-						$author$project$ResumePage$Helpers$TextItem('Was a tutor for the Computer Science department for 100, 200, and 300 level classes'),
-						$author$project$ResumePage$Helpers$TextItem('Primarily worked with C/C++, JavaScript, and Python')
-					]))
+				A5($author$project$ResumePage$Types$FormalEducation, 'Morningside College', 'May 2012', 'B.S. Computer Science', '3.2', _List_Nil)
 			]),
 		aX: $author$project$ResumePage$Types$OtherEducation(
 			_List_fromArray(
@@ -5305,9 +5295,10 @@ var $author$project$Main$mySkills = $elm$core$Maybe$Just(
 				A3($author$project$ResumePage$Types$Skill, 'Python', 5.0, 'Primary (and favorite!) language; many years of industry experience with large microservice codebases including REST APIs'),
 				A3($author$project$ResumePage$Types$Skill, 'Elm', 2.5, 'Current favorite hobby web language; no industry experience'),
 				A3($author$project$ResumePage$Types$Skill, 'JS/TS', 4.0, 'Heavily used in industry experience and personal projects'),
+				A3($author$project$ResumePage$Types$Skill, 'AWS', 4.0, 'Heavily used for project entirely built on AWS serverless technologies'),
+				A3($author$project$ResumePage$Types$Skill, 'Elixir', 3.0, 'Enjoyable language being used on hobby projects and to get further FP practice'),
 				A3($author$project$ResumePage$Types$Skill, 'React', 3.0, 'Heavily used in recent industry experience, using modern concepts like functional components and hooks'),
 				A3($author$project$ResumePage$Types$Skill, 'PostgreSQL', 3.5, 'Heavily used in both personal projects and industry experience; my go-to database now'),
-				A3($author$project$ResumePage$Types$Skill, 'C#', 2.5, 'Heavily used in industry experience, including several production apps'),
 				A3($author$project$ResumePage$Types$Skill, 'Regex', 4.5, 'Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code')
 			])
 	});
@@ -5320,9 +5311,32 @@ var $author$project$Main$myWorkHistory = $elm$core$Maybe$Just(
 		[
 			A5(
 			$author$project$ResumePage$Types$Job,
+			'Tactiq (f.k.a. DSD Partners)',
+			'November 2023',
+			'Present',
+			'Team Lead, Backend',
+			_List_fromArray(
+				[
+					$author$project$ResumePage$Helpers$TextItem('Lead a small team of backend engineers developing new features for an application running entirely on AWS technology, used by multiple large corporations including Dollar General to manage out of stock inventories and requests for restock for DSD goods.'),
+					$author$project$ResumePage$Helpers$TextItem('During employment, we acquired a competing company, and I spearheaded the initial research and investigations into not only integrating our two products, but also migrating our current offering from AWS to Google Cloud.'),
+					$author$project$ResumePage$Helpers$TextItem('Led efforts to massively increase the productivity of our team by adopting better coding standards, cleaning up our code usage, and guiding the team on best design principles for a serverless backend.')
+				])),
+			A5(
+			$author$project$ResumePage$Types$Job,
+			'Vendr, Inc',
+			'May 2023',
+			'November 2023',
+			'Senior Backend Engineer',
+			_List_fromArray(
+				[
+					$author$project$ResumePage$Helpers$TextItem('Worked for a short time with a small team on a Typescript + GraphQL-based backend for a widescale production application, with my primary focus being on helping build integrations with external tools and applications.'),
+					$author$project$ResumePage$Helpers$TextItem('Short stint at this role due to receiving a very enticing offer from one of my previous supervisors to work at Tactiq.')
+				])),
+			A5(
+			$author$project$ResumePage$Types$Job,
 			'Onebrief',
 			'June 2022',
-			'Present',
+			'May 2023',
 			'Senior Fullstack Software Engineer',
 			_List_fromArray(
 				[

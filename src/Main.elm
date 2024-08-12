@@ -64,8 +64,8 @@ aboutMe =
         , Website "https://me.3digit.dev/"
         ]
     , bio =
-        [ "I am a developer with primary experience in the backend, but experience across the whole stack.  I have spent my career advocating for good developer experience, better documentation, and no premature optimization.  Perfect is the enemy of good, and the most important feature of a project is that it's being used."
-        , "I am looking to become more of a leader, or manager, and help usher other developers to the heights they want to achieve as well.  I have experience with tutoring others, and enjoy teaching people new things."
+        [ "I am a team leader and developer with experience across the whole stack, including QA. I have spent my career advocating for good developer experience, better documentation, and no premature optimization. Perfect is the enemy of good, and the most important feature of a project is that it's being used."
+        , "I am looking to expand my skills as a leader, and help usher other developers to the heights they want to achieve as well. I have experience leading multiple teams working on production applications, and making important decisions on structure, architecture, and scoping."
         ]
     }
 
@@ -74,9 +74,26 @@ myWorkHistory : Maybe WorkHistoryPage
 myWorkHistory =
     Just
         [ Job
+            "Tactiq (f.k.a. DSD Partners)"
+            "November 2023"
+            "Present"
+            "Team Lead, Backend"
+            [ TextItem "Lead a small team of backend engineers developing new features for an application running entirely on AWS technology, used by multiple large corporations including Dollar General to manage out of stock inventories and requests for restock for DSD goods."
+            , TextItem "During employment, we acquired a competing company, and I spearheaded the initial research and investigations into not only integrating our two products, but also migrating our current offering from AWS to Google Cloud."
+            , TextItem "Led efforts to massively increase the productivity of our team by adopting better coding standards, cleaning up our code usage, and guiding the team on best design principles for a serverless backend."
+            ]
+        , Job
+            "Vendr, Inc"
+            "May 2023"
+            "November 2023"
+            "Senior Backend Engineer"
+            [ TextItem "Worked for a short time with a small team on a Typescript + GraphQL-based backend for a widescale production application, with my primary focus being on helping build integrations with external tools and applications."
+            , TextItem "Short stint at this role due to receiving a very enticing offer from one of my previous supervisors to work at Tactiq."
+            ]
+        , Job
             "Onebrief"
             "June 2022"
-            "Present"
+            "May 2023"
             "Senior Fullstack Software Engineer"
             [ TextItem "Entered into a small team of developers and a company looking to take off, and have been helping push out features at a rapidfire pace to help get the company going"
             , TextItem "Got in-depth knowledge of new technologies including collaborative editing using Operation Transformations"
@@ -138,9 +155,7 @@ myEducation =
                 "May 2012"
                 "B.S. Computer Science"
                 "3.2"
-                [ TextItem "Was a tutor for the Computer Science department for 100, 200, and 300 level classes"
-                , TextItem "Primarily worked with C/C++, JavaScript, and Python"
-                ]
+                []
             ]
         , bootCamps = []
         , otherEducation =
@@ -160,9 +175,10 @@ mySkills =
             [ Skill "Python" 5.0 "Primary (and favorite!) language; many years of industry experience with large microservice codebases including REST APIs"
             , Skill "Elm" 2.5 "Current favorite hobby web language; no industry experience"
             , Skill "JS/TS" 4.0 "Heavily used in industry experience and personal projects"
+            , Skill "AWS" 4.0 "Heavily used for project entirely built on AWS serverless technologies"
+            , Skill "Elixir" 3.0 "Enjoyable language being used on hobby projects and to get further FP practice"
             , Skill "React" 3.0 "Heavily used in recent industry experience, using modern concepts like functional components and hooks"
             , Skill "PostgreSQL" 3.5 "Heavily used in both personal projects and industry experience; my go-to database now"
-            , Skill "C#" 2.5 "Heavily used in industry experience, including several production apps"
             , Skill "Regex" 4.5 "Very knowledgeable up to advanced topics; Used heavily whenever I can, but never in true production code"
             ]
         }
